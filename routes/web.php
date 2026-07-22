@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ContractController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MemberController;
 use Illuminate\Http\Request;
@@ -34,4 +36,6 @@ Route::post('/login', function (Request $request) {
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('members', MemberController::class);
+    Route::resource('accounts', AccountController::class);
+    Route::resource('contracts', ContractController::class);
 });

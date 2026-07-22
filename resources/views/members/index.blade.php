@@ -107,12 +107,7 @@
         </div>
 
         @if ($members->count() > 0)
-            <div class="p-4 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-3">
-                <p class="text-sm text-slate-500">Menampilkan {{ $members->count() }} dari {{ $members->total() }} data</p>
-                <div class="flex items-center gap-1">
-                    {{ $members->links() }}
-                </div>
-            </div>
+            <div>{{ $members->links() }}</div>
         @endif
     </div>
 

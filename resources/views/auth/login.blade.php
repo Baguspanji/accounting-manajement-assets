@@ -68,7 +68,7 @@
                             <input type="checkbox" name="remember" class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary/30">
                             <span class="text-sm text-slate-600">Ingat saya</span>
                         </label>
-                        <a href="#" class="text-sm text-primary font-medium hover:underline">Lupa password?</a>
+                        <!-- <a href="#" class="text-sm text-primary font-medium hover:underline">Lupa password?</a> -->
                     </div>
 
                     <button type="submit" class="w-full bg-primary text-white py-2.5 rounded-xl font-semibold hover:bg-primary-dark transition-colors shadow-sm flex items-center justify-center gap-2">

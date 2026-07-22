@@ -21,11 +21,11 @@
             <i data-lucide="users" class="w-5 h-5"></i>
             <span class="text-sm">Anggota</span>
         </a>
-        <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors">
+        <a href="{{ route('accounts.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('accounts.*') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
             <i data-lucide="list" class="w-5 h-5"></i>
             <span class="text-sm">Chart of Account</span>
         </a>
-        <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors">
+        <a href="{{ route('contracts.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('contracts.*') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
             <i data-lucide="scroll-text" class="w-5 h-5"></i>
             <span class="text-sm">Akad Syariah</span>
         </a>
