@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SP Syariah - Akuntansi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: '#16a34a', light: '#dcfce7', dark: '#15803d' },
+                        info: { DEFAULT: '#2563eb', light: '#dbeafe' },
+                        warning: { DEFAULT: '#ea580c', light: '#ffedd5' },
+                        danger: { DEFAULT: '#dc2626', light: '#fee2e2' },
+                        surface: '#f8fafc',
+                    },
+                    borderRadius: { 'xl': '12px', '2xl': '16px' },
+                    boxShadow: { 'soft': '0 2px 8px 0 rgba(0,0,0,0.05)' }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .custom-scroll::-webkit-scrollbar { width: 5px; height: 5px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .modal-overlay { background-color: rgba(15, 23, 42, 0.5); backdrop-filter: blur(4px); }
+    </style>
+</head>
+<body class="bg-surface text-slate-800 antialiased">
+
+    <!-- ========================================= -->
+    <!-- 1. HALAMAN LOGIN                           -->
+    <!-- ========================================= -->
+    <div id="login-page" class="min-h-screen flex items-center justify-center p-4 bg-linear-to-br from-primary/10 via-surface to-info/10">
+        <div class="w-full max-w-4xl bg-white rounded-2xl shadow-xl overflow-hidden grid md:grid-cols-2 border border-slate-100">
+
+            <!-- Bagian Branding / Ilustrasi -->
+            <div class="hidden md:flex flex-col justify-between bg-primary p-8 text-white">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                        <i data-lucide="landmark" class="w-6 h-6"></i>
+                    </div>
+                    <span class="font-bold text-lg">SP Syariah</span>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold mb-2">Aplikasi Pembelajaran Akuntansi Simpan Pinjam Syariah</h2>
+                    <p class="text-white/80 text-sm">Belajar konsep akuntansi syariah secara praktis dan modern.</p>
+                </div>
+                <div class="text-xs text-white/60">
+                    &copy; 2024 SP Syariah Learning. All rights reserved.
+                </div>
+            </div>
+
+            <!-- Bagian Form Login -->
+            <div class="p-8 md:p-12 flex flex-col justify-center">
+                <div class="md:hidden flex items-center space-x-2 mb-8">
+                    <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white">
+                        <i data-lucide="landmark" class="w-6 h-6"></i>
+                    </div>
+                    <span class="font-bold text-lg text-slate-800">SP Syariah</span>
+                </div>
+
+                <h1 class="text-2xl font-bold text-slate-800 mb-2">Selamat Datang Kembali 👋</h1>
+                <p class="text-slate-500 mb-8 text-sm">Silakan masukkan kredensial Anda untuk mengakses dashboard.</p>
+
+                <form action="#" method="POST" class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1.5">Email / Username</label>
+                        <div class="relative">
+                            <i data-lucide="mail" class="w-5 h-5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+                            <input type="email" placeholder="admin@spsyariah.com" class="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1.5">Password</label>
+                        <div class="relative">
+                            <i data-lucide="lock" class="w-5 h-5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+                            <input type="password" placeholder="********" class="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary/30">
+                            <span class="text-sm text-slate-600">Ingat saya</span>
+                        </label>
+                        <a href="#" class="text-sm text-primary font-medium hover:underline">Lupa password?</a>
+                    </div>
+
+                    <button type="button" onclick="showApp()" class="w-full bg-primary text-white py-2.5 rounded-xl font-semibold hover:bg-primary-dark transition-colors shadow-sm flex items-center justify-center gap-2">
+                        Masuk ke Dashboard
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </form>
+
+                <p class="text-center text-sm text-slate-500 mt-8">
+                    Belum punya akun?
+                    <a href="#" class="font-medium text-primary hover:underline">Hubungi Administrator</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- 2. HALAMAN APLIKASI (DAFTAR ANGGOTA)       -->
+    <!-- ========================================= -->
+    <div id="app-page" class="hidden flex h-screen overflow-hidden">
+
+        <!-- SIDEBAR -->
+        <aside class="w-64 bg-white border-r border-slate-200 flex-col hidden md:flex">
+            <div class="h-16 flex items-center px-4 border-b border-slate-200">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-primary rounded-xl flex items-center justify-center text-white">
+                        <i data-lucide="landmark" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-bold text-slate-800">SP Syariah</span>
+                </div>
+            </div>
+            <nav class="flex-1 overflow-y-auto custom-scroll py-4 px-3 space-y-1">
+                <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                    <span class="text-sm">Dashboard</span>
+                </a>
+                <p class="px-3 text-xs font-semibold text-slate-400 uppercase mt-4 mb-1">Master Data</p>
+                <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl bg-primary-light text-primary-dark font-medium">
+                    <i data-lucide="users" class="w-5 h-5"></i>
+                    <span class="text-sm">Anggota</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors">
+                    <i data-lucide="list" class="w-5 h-5"></i>
+                    <span class="text-sm">Chart of Account</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors">
+                    <i data-lucide="scroll-text" class="w-5 h-5"></i>
+                    <span class="text-sm">Akad Syariah</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+
+            <!-- HEADER -->
+            <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 sticky top-0 z-30">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-lg font-bold text-slate-800">Anggota</h1>
+                    <div class="text-xs text-slate-500 hidden md:flex items-center gap-1">
+                        <a href="#" class="hover:text-primary">Master</a> <span>/</span> <span class="text-slate-700">Anggota</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="hidden md:flex items-center bg-slate-100 rounded-xl px-3 py-2 w-48">
+                        <i data-lucide="search" class="w-4 h-4 text-slate-500 mr-2"></i>
+                        <input type="text" placeholder="Cari..." class="bg-transparent text-sm outline-none w-full">
+                    </div>
+                    <button class="relative p-2 rounded-xl hover:bg-slate-100">
+                        <i data-lucide="bell" class="w-5 h-5 text-slate-600"></i>
+                    </button>
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=16a34a&color=fff" alt="User" class="w-8 h-8 rounded-lg">
+                </div>
+            </header>
+
+            <!-- CONTENT AREA -->
+            <main class="flex-1 overflow-y-auto custom-scroll p-6">
+
+                <!-- PAGE INTRO & ACTIONS -->
+                <div class="flex flex-col md:flex-row justify-between md:items-center mb-6 gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-800">Daftar Anggota</h2>
+                        <p class="text-slate-500 text-sm">Kelola data nasabah simpan pinjam syariah.</p>
+                    </div>
+                    <button onclick="openModal()" class="bg-primary text-white px-4 py-2.5 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-primary-dark transition-colors shadow-sm">
+                        <i data-lucide="plus" class="w-5 h-5"></i>
+                        Tambah Anggota
+                    </button>
+                </div>
+
+                <!-- DATA TABLE CARD -->
+                <div class="bg-white rounded-2xl shadow-soft border border-slate-100 overflow-hidden">
+
+                    <!-- Toolbar Table -->
+                    <div class="p-4 border-b border-slate-100 flex flex-col md:flex-row gap-3 md:items-center justify-between">
+                        <div class="relative w-full md:w-64">
+                            <i data-lucide="search" class="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2"></i>
+                            <input type="text" placeholder="Cari nama / ID anggota..." class="w-full pl-10 pr-4 py-2 text-sm border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30">
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="flex items-center gap-2 text-sm text-slate-600 border border-slate-200 px-3 py-2 rounded-xl hover:bg-slate-50">
+                                <i data-lucide="filter" class="w-4 h-4"></i> Filter
+                            </button>
+                            <button class="flex items-center gap-2 text-sm text-slate-600 border border-slate-200 px-3 py-2 rounded-xl hover:bg-slate-50">
+                                <i data-lucide="download" class="w-4 h-4"></i> Export
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead class="bg-slate-50 border-b border-slate-100 sticky top-0">
+                                <tr>
+                                    <th class="py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">ID Anggota</th>
+                                    <th class="py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Nama Anggota</th>
+                                    <th class="py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">No. Telepon</th>
+                                    <th class="py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Tgl. Bergabung</th>
+                                    <th class="py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
+                                    <th class="py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider text-right">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <!-- Row 1 -->
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="py-3 px-4 text-sm font-medium text-slate-700">AG-00123</td>
+                                    <td class="py-3 px-4">
+                                        <div class="flex items-center gap-3">
+                                            <img src="https://ui-avatars.com/api/?name=Budi+Santoso&background=2563eb&color=fff" class="w-9 h-9 rounded-lg" alt="Avatar">
+                                            <div>
+                                                <p class="font-medium text-slate-800 text-sm">Budi Santoso</p>
+                                                <p class="text-xs text-slate-500">budi@email.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-4 text-sm text-slate-600">0812-3456-7890</td>
+                                    <td class="py-3 px-4 text-sm text-slate-600">12 Jan 2024</td>
+                                    <td class="py-3 px-4">
+                                        <span class="px-2.5 py-1 inline-flex text-xs font-semibold rounded-full bg-primary-light text-primary">Aktif</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-right">
+                                        <div class="flex items-center justify-end gap-1">
+                                            <button class="p-1.5 hover:bg-info-light rounded-lg text-slate-500 hover:text-info"><i data-lucide="eye" class="w-4 h-4"></i></button>
+                                            <button class="p-1.5 hover:bg-warning-light rounded-lg text-slate-500 hover:text-warning"><i data-lucide="edit" class="w-4 h-4"></i></button>
+                                            <button class="p-1.5 hover:bg-danger-light rounded-lg text-slate-500 hover:text-danger"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 2 -->
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="py-3 px-4 text-sm font-medium text-slate-700">AG-00124</td>
+                                    <td class="py-3 px-4">
+                                        <div class="flex items-center gap-3">
+                                            <img src="https://ui-avatars.com/api/?name=Siti+Aminah&background=ea580c&color=fff" class="w-9 h-9 rounded-lg" alt="Avatar">
+                                            <div>
+                                                <p class="font-medium text-slate-800 text-sm">Siti Aminah</p>
+                                                <p class="text-xs text-slate-500">siti@email.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-4 text-sm text-slate-600">0813-9876-5432</td>
+                                    <td class="py-3 px-4 text-sm text-slate-600">15 Feb 2024</td>
+                                    <td class="py-3 px-4">
+                                        <span class="px-2.5 py-1 inline-flex text-xs font-semibold rounded-full bg-primary-light text-primary">Aktif</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-right">
+                                        <div class="flex items-center justify-end gap-1">
+                                            <button class="p-1.5 hover:bg-info-light rounded-lg text-slate-500 hover:text-info"><i data-lucide="eye" class="w-4 h-4"></i></button>
+                                            <button class="p-1.5 hover:bg-warning-light rounded-lg text-slate-500 hover:text-warning"><i data-lucide="edit" class="w-4 h-4"></i></button>
+                                            <button class="p-1.5 hover:bg-danger-light rounded-lg text-slate-500 hover:text-danger"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 3 -->
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="py-3 px-4 text-sm font-medium text-slate-700">AG-00125</td>
+                                    <td class="py-3 px-4">
+                                        <div class="flex items-center gap-3">
+                                            <img src="https://ui-avatars.com/api/?name=Joko+Widodo&background=64748b&color=fff" class="w-9 h-9 rounded-lg" alt="Avatar">
+                                            <div>
+                                                <p class="font-medium text-slate-800 text-sm">Joko Widodo</p>
+                                                <p class="text-xs text-slate-500">joko@email.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-4 text-sm text-slate-600">0852-1122-3344</td>
+                                    <td class="py-3 px-4 text-sm text-slate-600">20 Mar 2024</td>
+                                    <td class="py-3 px-4">
+                                        <span class="px-2.5 py-1 inline-flex text-xs font-semibold rounded-full bg-slate-100 text-slate-600">Non-Aktif</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-right">
+                                        <div class="flex items-center justify-end gap-1">
+                                            <button class="p-1.5 hover:bg-info-light rounded-lg text-slate-500 hover:text-info"><i data-lucide="eye" class="w-4 h-4"></i></button>
+                                            <button class="p-1.5 hover:bg-warning-light rounded-lg text-slate-500 hover:text-warning"><i data-lucide="edit" class="w-4 h-4"></i></button>
+                                            <button class="p-1.5 hover:bg-danger-light rounded-lg text-slate-500 hover:text-danger"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="p-4 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-3">
+                        <p class="text-sm text-slate-500">Menampilkan 1-3 dari 50 data</p>
+                        <div class="flex items-center gap-1">
+                            <button class="p-2 rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50 disabled:opacity-50" disabled><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+                            <button class="w-9 h-9 rounded-lg bg-primary text-white font-medium text-sm">1</button>
+                            <button class="w-9 h-9 rounded-lg text-slate-600 hover:bg-slate-100 font-medium text-sm">2</button>
+                            <button class="w-9 h-9 rounded-lg text-slate-600 hover:bg-slate-100 font-medium text-sm">3</button>
+                            <button class="p-2 rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- 3. MODAL FORM CREATE ANGGOTA               -->
+    <!-- ========================================= -->
+    <div id="create-modal" class="modal-overlay fixed inset-0 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col">
+
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-5 border-b border-slate-100">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-800">Tambah Anggota Baru</h3>
+                    <p class="text-sm text-slate-500">Lengkapi data di bawah ini untuk menambah anggota.</p>
+                </div>
+                <button onclick="closeModal()" class="p-2 hover:bg-slate-100 rounded-lg text-slate-500">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body (Form) -->
+            <div class="p-6 overflow-y-auto custom-scroll">
+                <form action="#" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                    <!-- Kolom Kiri -->
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1.5">Nama Lengkap <span class="text-danger">*</span></label>
+                            <input type="text" placeholder="cth. Budi Santoso" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                            <p class="text-xs text-slate-500 mt-1">Masukkan nama sesuai KTP.</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1.5">Email <span class="text-danger">*</span></label>
+                            <input type="email" placeholder="email@contoh.com" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                            <p class="text-xs text-slate-500 mt-1">Digunakan untuk notifikasi akun.</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1.5">Nomor Telepon <span class="text-danger">*</span></label>
+                            <input type="text" placeholder="0812xxxxxxx" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1.5">Tanggal Bergabung <span class="text-danger">*</span></label>
+                            <input type="date" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                        </div>
+                    </div>
+
+                    <!-- Kolom Kanan -->
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1.5">Nomor KTP <span class="text-danger">*</span></label>
+                            <input type="text" placeholder="16 digit NIK" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1.5">Jenis Kelamin</label>
+                            <select class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white">
+                                <option value="">Pilih Jenis Kelamin</option>
+                                <option value="l">Laki-laki</option>
+                                <option value="p">Perempuan</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1.5">Alamat Domisili</label>
+                            <textarea rows="3" placeholder="Masukkan alamat lengkap" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary resize-none"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1.5">Status Keanggotaan</label>
+                            <label class="flex items-center gap-2 cursor-pointer mt-1">
+                                <input type="checkbox" checked class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary/30">
+                                <span class="text-sm text-slate-600">Aktif langsung setelah dibuat</span>
+                            </label>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="flex items-center justify-end gap-3 p-5 border-t border-slate-100 bg-slate-50 rounded-b-2xl">
+                <button onclick="closeModal()" class="px-5 py-2.5 text-sm font-medium text-slate-600 border border-slate-200 rounded-xl hover:bg-white transition-colors">
+                    Batal
+                </button>
+                <button class="px-5 py-2.5 text-sm font-semibold text-white bg-primary rounded-xl hover:bg-primary-dark transition-colors shadow-sm flex items-center gap-2">
+                    <i data-lucide="save" class="w-4 h-4"></i>
+                    Simpan Data
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // Logic untuk pindah dari Login ke App
+        function showApp() {
+            document.getElementById('login-page').classList.add('hidden');
+            document.getElementById('app-page').classList.remove('hidden');
+            document.getElementById('app-page').classList.add('flex');
+            lucide.createIcons(); // Re-init icons
+        }
+
+        // Logic Modal
+        function openModal() {
+            const modal = document.getElementById('create-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('create-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Close modal if clicking outside the box
+        document.getElementById('create-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
