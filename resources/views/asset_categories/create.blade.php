@@ -3,7 +3,7 @@
 @section('title', 'Tambah Kategori Aset')
 @section('page-title', 'Kategori Aset')
 @section('breadcrumb')
-    <a href="{{ route('dashboard') }}" class="hover:text-primary">Master</a>
+    <a href="{{ route('dashboard') }}" class="hover:text-primary">Home</a>
     <span>/</span>
     <a href="{{ route('asset-categories.index') }}" class="hover:text-primary">Kategori Aset</a>
     <span>/</span>
@@ -16,70 +16,61 @@
         <p class="text-text-secondary text-sm">Lengkapi data kategori aset tetap.</p>
     </div>
 
-    <div class="bg-white rounded-2xl shadow-soft border border-slate-100">
+    <div class="bg-surface rounded-2xl shadow-soft border border-slate-100">
         <form action="{{ route('asset-categories.store') }}" method="POST">
             @csrf
-            <div class="p-6 max-w-3xl space-y-4">
+            <div class="p-6 max-w-5xl space-y-4">
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1.5">Kode Kategori <span class="text-danger">*</span></label>
-                        <input type="text" name="code" value="{{ old('code') }}" placeholder="cth. KDN" required
-                            class="w-full px-4 py-2.5 border rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary {{ $errors->has('code') ? 'border-danger' : 'border-slate-200' }}">
-                        @error('code')<p class="text-xs text-danger mt-1">{{ $message }}</p>@enderror
+                        <x-forms.label for="code" required>Kode Kategori</x-forms.label>
+                        <x-forms.input name="code" placeholder="cth. KDN" required />
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1.5">Nama Kategori <span class="text-danger">*</span></label>
-                        <input type="text" name="name" value="{{ old('name') }}" placeholder="cth. Kendaraan" required
-                            class="w-full px-4 py-2.5 border rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary {{ $errors->has('name') ? 'border-danger' : 'border-slate-200' }}">
-                        @error('name')<p class="text-xs text-danger mt-1">{{ $message }}</p>@enderror
+                        <x-forms.label for="name" required>Nama Kategori</x-forms.label>
+                        <x-forms.input name="name" placeholder="cth. Kendaraan" required />
                     </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1.5">Akun Aset</label>
-                        <select name="asset_account_id" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white">
+                        <x-forms.label for="asset_account_id">Akun Aset</x-forms.label>
+                        <x-forms.select name="asset_account_id">
                             <option value="">Pilih Akun</option>
                             @foreach ($accounts as $account)
                                 <option value="{{ $account->id }}" {{ old('asset_account_id') == $account->id ? 'selected' : '' }}>{{ $account->code }} - {{ $account->name }}</option>
                             @endforeach
-                        </select>
+                        </x-forms.select>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1.5">Akun Beban Penyusutan</label>
-                        <select name="depreciation_expense_account_id" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white">
+                        <x-forms.label for="depreciation_expense_account_id">Akun Beban Penyusutan</x-forms.label>
+                        <x-forms.select name="depreciation_expense_account_id">
                             <option value="">Pilih Akun</option>
                             @foreach ($accounts as $account)
                                 <option value="{{ $account->id }}" {{ old('depreciation_expense_account_id') == $account->id ? 'selected' : '' }}>{{ $account->code }} - {{ $account->name }}</option>
                             @endforeach
-                        </select>
+                        </x-forms.select>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1.5">Akun Akumulasi Penyusutan</label>
-                        <select name="accumulated_depreciation_account_id" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white">
+                        <x-forms.label for="accumulated_depreciation_account_id">Akun Akumulasi Penyusutan</x-forms.label>
+                        <x-forms.select name="accumulated_depreciation_account_id">
                             <option value="">Pilih Akun</option>
                             @foreach ($accounts as $account)
                                 <option value="{{ $account->id }}" {{ old('accumulated_depreciation_account_id') == $account->id ? 'selected' : '' }}>{{ $account->code }} - {{ $account->name }}</option>
                             @endforeach
-                        </select>
+                        </x-forms.select>
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1.5">Umur Manfaat Default (tahun)</label>
-                        <input type="number" name="default_useful_life" value="{{ old('default_useful_life') }}" placeholder="cth. 8"
-                            class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                        <x-forms.label for="default_useful_life">Umur Manfaat Default (tahun)</x-forms.label>
+                        <x-forms.input type="number" name="default_useful_life" placeholder="cth. 8" />
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1.5">Nilai Residu Default</label>
-                        <input type="number" step="0.01" name="default_residual_value" value="{{ old('default_residual_value', 0) }}"
-                            class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                        <x-forms.label for="default_residual_value">Nilai Residu Default</x-forms.label>
+                        <x-forms.input type="number" step="0.01" name="default_residual_value" :value="0" />
                     </div>
                 </div>
                 <div>
-                    <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" name="is_active" value="1" checked class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary/30">
-                        <span class="text-sm text-slate-600">Aktif</span>
-                    </label>
+                    <x-forms.checkbox name="is_active" value="1" :checked="true">Aktif</x-forms.checkbox>
                 </div>
             </div>
 

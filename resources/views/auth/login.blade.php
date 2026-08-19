@@ -40,34 +40,17 @@
                 <form action="{{ route('login') }}" method="POST" class="space-y-5">
                     @csrf
                     <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1.5">Email / Username</label>
-                        <div class="relative">
-                            <i data-lucide="mail" class="w-5 h-5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
-                            <input type="email" name="email" value="{{ old('email') }}" placeholder="admin@akuntansiaset.com" required
-                                class="w-full pl-10 pr-4 py-2.5 border rounded-xl focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition-all {{ $errors->has('email') ? 'border-danger' : 'border-slate-200' }}">
-                        </div>
-                        @error('email')
-                            <p class="text-xs text-danger mt-1">{{ $message }}</p>
-                        @enderror
+                        <x-forms.label for="email" required>Email / Username</x-forms.label>
+                        <x-forms.input type="email" name="email" icon="mail" placeholder="admin@akuntansiaset.com" required />
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1.5">Password</label>
-                        <div class="relative">
-                            <i data-lucide="lock" class="w-5 h-5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
-                            <input type="password" name="password" placeholder="********" required
-                                class="w-full pl-10 pr-4 py-2.5 border rounded-xl focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition-all {{ $errors->has('password') ? 'border-danger' : 'border-slate-200' }}">
-                        </div>
-                        @error('password')
-                            <p class="text-xs text-danger mt-1">{{ $message }}</p>
-                        @enderror
+                        <x-forms.label for="password" required>Password</x-forms.label>
+                        <x-forms.input type="password" name="password" icon="lock" placeholder="********" required />
                     </div>
 
                     <div class="flex items-center justify-between">
-                        <label class="flex items-center space-x-2 cursor-pointer">
-                            <input type="checkbox" name="remember" class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary/30">
-                            <span class="text-sm text-slate-600">Ingat saya</span>
-                        </label>
+                        <x-forms.checkbox name="remember" value="1">Ingat saya</x-forms.checkbox>
                         <!-- <a href="#" class="text-sm text-primary font-medium hover:underline">Lupa password?</a> -->
                     </div>
 

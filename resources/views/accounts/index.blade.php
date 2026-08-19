@@ -128,48 +128,45 @@
                 <div class="space-y-4">
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-1.5">Kode Akun <span class="text-danger">*</span></label>
-                            <input type="text" name="code" placeholder="1101" required class="w-full px-4 py-2.5 border rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary {{ $errors->has('code') ? 'border-danger' : 'border-slate-200' }}">
+                            <x-forms.label for="code" required>Kode Akun</x-forms.label>
+                            <x-forms.input name="code" placeholder="1101" required />
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-1.5">Kategori <span class="text-danger">*</span></label>
-                            <select name="category" required class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white">
+                            <x-forms.label for="category" required>Kategori</x-forms.label>
+                            <x-forms.select name="category" required>
                                 <option value="">Pilih Kategori</option>
                                 <option value="asset">Aset</option>
                                 <option value="liability">Liabilitas</option>
                                 <option value="equity">Ekuitas</option>
                                 <option value="revenue">Pendapatan</option>
                                 <option value="expense">Beban</option>
-                            </select>
+                            </x-forms.select>
                         </div>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1.5">Nama Akun <span class="text-danger">*</span></label>
-                        <input type="text" name="name" placeholder="Kas Perusahaan" required class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                        <x-forms.label for="name" required>Nama Akun</x-forms.label>
+                        <x-forms.input name="name" placeholder="Kas Perusahaan" required />
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-1.5">Saldo Normal <span class="text-danger">*</span></label>
-                            <select name="normal_balance" required class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white">
+                            <x-forms.label for="normal_balance" required>Saldo Normal</x-forms.label>
+                            <x-forms.select name="normal_balance" required>
                                 <option value="debit">Debit</option>
                                 <option value="credit">Kredit</option>
-                            </select>
+                            </x-forms.select>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-1.5">Akun Induk</label>
-                            <select name="parent_id" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white">
+                            <x-forms.label for="parent_id">Akun Induk</x-forms.label>
+                            <x-forms.select name="parent_id">
                                 <option value="">Tanpa Induk</option>
                                 @foreach(\App\Models\Account::where('parent_id', null)->get() as $parent)
                                     <option value="{{ $parent->id }}">{{ $parent->code }} - {{ $parent->name }}</option>
                                 @endforeach
-                            </select>
+                            </x-forms.select>
                         </div>
                     </div>
                     <div>
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" name="is_active" value="1" checked class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary/30">
-                            <span class="text-sm text-slate-600">Aktif</span>
-                        </label>
+                        <x-forms.checkbox name="is_active" value="1" :checked="true">Aktif</x-forms.checkbox>
                     </div>
                 </div>
                 <div class="flex items-center justify-end gap-3 mt-6 pt-4 border-t border-slate-100">
@@ -201,44 +198,41 @@
                     <input type="hidden" id="edit-id">
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-1.5">Kode Akun <span class="text-danger">*</span></label>
-                            <input type="text" id="edit-code" name="code" required class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                            <x-forms.label for="edit-code" required>Kode Akun</x-forms.label>
+                            <x-forms.input id="edit-code" name="code" required />
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-1.5">Kategori <span class="text-danger">*</span></label>
-                            <select id="edit-category" name="category" required class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white">
+                            <x-forms.label for="edit-category" required>Kategori</x-forms.label>
+                            <x-forms.select id="edit-category" name="category" required>
                                 <option value="asset">Aset</option>
                                 <option value="liability">Liabilitas</option>
                                 <option value="equity">Ekuitas</option>
                                 <option value="revenue">Pendapatan</option>
                                 <option value="expense">Beban</option>
-                            </select>
+                            </x-forms.select>
                         </div>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1.5">Nama Akun <span class="text-danger">*</span></label>
-                        <input type="text" id="edit-name" name="name" required class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                        <x-forms.label for="edit-name" required>Nama Akun</x-forms.label>
+                        <x-forms.input id="edit-name" name="name" required />
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-1.5">Saldo Normal <span class="text-danger">*</span></label>
-                            <select id="edit-normal" name="normal_balance" required class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white">
+                            <x-forms.label for="edit-normal" required>Saldo Normal</x-forms.label>
+                            <x-forms.select id="edit-normal" name="normal_balance" required>
                                 <option value="debit">Debit</option>
                                 <option value="credit">Kredit</option>
-                            </select>
+                            </x-forms.select>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-1.5">Akun Induk</label>
-                            <select id="edit-parent" name="parent_id" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white">
+                            <x-forms.label for="edit-parent">Akun Induk</x-forms.label>
+                            <x-forms.select id="edit-parent" name="parent_id">
                                 <option value="">Tanpa Induk</option>
-                            </select>
+                            </x-forms.select>
                         </div>
                     </div>
                     <div>
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="edit-active" name="is_active" value="1" class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary/30">
-                            <span class="text-sm text-slate-600">Aktif</span>
-                        </label>
+                        <x-forms.checkbox id="edit-active" name="is_active" value="1">Aktif</x-forms.checkbox>
                     </div>
                 </div>
                 <div class="flex items-center justify-end gap-3 mt-6 pt-4 border-t border-slate-100">
