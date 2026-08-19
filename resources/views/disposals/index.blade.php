@@ -27,69 +27,53 @@
         <x-flash type="error">{{ Session::get('error') }}</x-flash>
     @endif
 
-    <div class="bg-white rounded-2xl shadow-soft border border-slate-100 overflow-hidden">
-        <div class="p-4 border-b border-slate-100">
+    <x-table :items="$disposals" empty="Belum ada pelepasan aset yang dicatat.">
+        <x-slot:header>
             <h3 class="font-semibold text-text-primary">Riwayat Pelepasan Aset</h3>
-        </div>
-        <div class="overflow-x-auto">
-            <table class="w-full text-left">
-                <thead class="bg-slate-50 border-b border-slate-100">
-                    <tr>
-                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider">Aset</th>
-                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider">Tanggal</th>
-                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider">Jenis</th>
-                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider text-right">Nilai Buku</th>
-                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider text-right">Laba / Rugi</th>
-                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider text-right">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-100">
-                    @forelse ($disposals as $disposal)
-                        <tr class="hover:bg-slate-50 transition-colors">
-                            <td class="py-3 px-4">
-                                <p class="font-medium text-text-primary text-sm">{{ $disposal->asset?->name }}</p>
-                                <p class="text-xs text-text-secondary">{{ $disposal->asset?->asset_number }}</p>
-                            </td>
-                            <td class="py-3 px-4 text-sm text-slate-600">{{ $disposal->disposal_date->format('d M Y') }}</td>
-                            <td class="py-3 px-4">
-                                @php
-                                    $typeLabel = ['sale' => 'Penjualan', 'write_off' => 'Penghapusan', 'transfer' => 'Transfer'];
-                                @endphp
-                                <span class="px-2.5 py-1 inline-flex text-xs font-semibold rounded-full bg-slate-100 text-slate-600">
-                                    {{ $typeLabel[$disposal->disposal_type] ?? $disposal->disposal_type }}
-                                </span>
-                            </td>
-                            <td class="py-3 px-4 text-sm text-slate-600 text-right">{{ number_format($disposal->book_value, 0, ',', '.') }}</td>
-                            <td class="py-3 px-4 text-right">
-                                @if ($disposal->gain_loss > 0)
-                                    <span class="text-sm font-medium text-primary">+{{ number_format($disposal->gain_loss, 0, ',', '.') }}</span>
-                                @elseif ($disposal->gain_loss < 0)
-                                    <span class="text-sm font-medium text-danger">{{ number_format($disposal->gain_loss, 0, ',', '.') }}</span>
-                                @else
-                                    <span class="text-sm text-text-secondary">-</span>
-                                @endif
-                            </td>
-                            <td class="py-3 px-4 text-right">
-                                <a href="{{ route('disposals.show', $disposal->id) }}" class="p-1.5 hover:bg-info-light rounded-lg text-text-secondary hover:text-info">
-                                    <i data-lucide="eye" class="w-4 h-4"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="6" class="py-8 px-4 text-center text-text-secondary">
-                                Belum ada pelepasan aset yang dicatat.
-                            </td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
+        </x-slot:header>
 
-        @if ($disposals->count() > 0)
-            <div>{{ $disposals->links() }}</div>
-        @endif
-    </div>
+        <x-slot:head>
+            <x-table.th>Aset</x-table.th>
+            <x-table.th>Tanggal</x-table.th>
+            <x-table.th>Jenis</x-table.th>
+            <x-table.th align="right">Nilai Buku</x-table.th>
+            <x-table.th align="right">Laba / Rugi</x-table.th>
+            <x-table.th align="right">Aksi</x-table.th>
+        </x-slot>
+
+        @foreach ($disposals as $disposal)
+            <tr class="hover:bg-slate-50 transition-colors">
+                <x-table.td>
+                    <p class="font-medium text-text-primary text-sm">{{ $disposal->asset?->name }}</p>
+                    <p class="text-xs text-text-secondary">{{ $disposal->asset?->asset_number }}</p>
+                </x-table.td>
+                <x-table.td class="text-sm text-slate-600">{{ $disposal->disposal_date->format('d M Y') }}</x-table.td>
+                <x-table.td>
+                    @php
+                        $typeLabel = ['sale' => 'Penjualan', 'write_off' => 'Penghapusan', 'transfer' => 'Transfer'];
+                    @endphp
+                    <span class="px-2.5 py-1 inline-flex text-xs font-semibold rounded-full bg-slate-100 text-slate-600">
+                        {{ $typeLabel[$disposal->disposal_type] ?? $disposal->disposal_type }}
+                    </span>
+                </x-table.td>
+                <x-table.td align="right" class="text-sm text-slate-600">{{ number_format($disposal->book_value, 0, ',', '.') }}</x-table.td>
+                <x-table.td align="right">
+                    @if ($disposal->gain_loss > 0)
+                        <span class="text-sm font-medium text-primary">+{{ number_format($disposal->gain_loss, 0, ',', '.') }}</span>
+                    @elseif ($disposal->gain_loss < 0)
+                        <span class="text-sm font-medium text-danger">{{ number_format($disposal->gain_loss, 0, ',', '.') }}</span>
+                    @else
+                        <span class="text-sm text-text-secondary">-</span>
+                    @endif
+                </x-table.td>
+                <x-table.td align="right">
+                    <a href="{{ route('disposals.show', $disposal->id) }}" class="p-1.5 hover:bg-info-light rounded-lg text-text-secondary hover:text-info">
+                        <i data-lucide="eye" class="w-4 h-4"></i>
+                    </a>
+                </x-table.td>
+            </tr>
+        @endforeach
+    </x-table>
 
     <script>lucide.createIcons();</script>
 @endsection

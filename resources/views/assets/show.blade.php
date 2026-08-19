@@ -60,41 +60,41 @@
                     <table class="w-full text-sm text-left">
                         <tbody class="divide-y divide-slate-100">
                             <tr class="hover:bg-slate-50">
-                                <th class="w-1/3 py-4 px-5 font-medium text-text-secondary">Kategori</th>
-                                <td class="py-4 px-5 text-text-primary">{{ $asset->category?->name ?? '-' }}</td>
+                                <x-table.label>Kategori</x-table.label>
+                                <x-table.td relaxed class="text-text-primary">{{ $asset->category?->name ?? '-' }}</x-table.td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-text-secondary">Tanggal Perolehan</th>
-                                <td class="py-4 px-5 text-text-primary">{{ $asset->acquisition_date->format('d M Y') }}</td>
+                                <x-table.label>Tanggal Perolehan</x-table.label>
+                                <x-table.td relaxed class="text-text-primary">{{ $asset->acquisition_date->format('d M Y') }}</x-table.td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-text-secondary">Umur Manfaat</th>
-                                <td class="py-4 px-5 text-text-primary">{{ $asset->useful_life }} tahun</td>
+                                <x-table.label>Umur Manfaat</x-table.label>
+                                <x-table.td relaxed class="text-text-primary">{{ $asset->useful_life }} tahun</x-table.td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-text-secondary">Metode Penyusutan</th>
-                                <td class="py-4 px-5 text-text-primary">{{ $asset->depreciationMethod?->name ?? '-' }}</td>
+                                <x-table.label>Metode Penyusutan</x-table.label>
+                                <x-table.td relaxed class="text-text-primary">{{ $asset->depreciationMethod?->name ?? '-' }}</x-table.td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-text-secondary">Nomor Seri</th>
-                                <td class="py-4 px-5 text-text-primary">{{ $asset->serial_number ?? '-' }}</td>
+                                <x-table.label>Nomor Seri</x-table.label>
+                                <x-table.td relaxed class="text-text-primary">{{ $asset->serial_number ?? '-' }}</x-table.td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-text-secondary">Lokasi</th>
-                                <td class="py-4 px-5 text-text-primary">{{ $asset->location ?? '-' }}</td>
+                                <x-table.label>Lokasi</x-table.label>
+                                <x-table.td relaxed class="text-text-primary">{{ $asset->location ?? '-' }}</x-table.td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-text-secondary">Penanggung Jawab</th>
-                                <td class="py-4 px-5 text-text-primary">{{ $asset->responsible_person ?? '-' }}</td>
+                                <x-table.label>Penanggung Jawab</x-table.label>
+                                <x-table.td relaxed class="text-text-primary">{{ $asset->responsible_person ?? '-' }}</x-table.td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-text-secondary">Supplier</th>
-                                <td class="py-4 px-5 text-text-primary">{{ $asset->supplier ?? '-' }}</td>
+                                <x-table.label>Supplier</x-table.label>
+                                <x-table.td relaxed class="text-text-primary">{{ $asset->supplier ?? '-' }}</x-table.td>
                             </tr>
                             @if ($asset->notes)
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-text-secondary align-top">Catatan</th>
-                                <td class="py-4 px-5 text-text-primary">{{ $asset->notes }}</td>
+                                <x-table.label>Catatan</x-table.label>
+                                <x-table.td relaxed class="text-text-primary">{{ $asset->notes }}</x-table.td>
                             </tr>
                             @endif
                         </tbody>

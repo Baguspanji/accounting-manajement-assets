@@ -18,7 +18,7 @@
 
     @if ($errors->any())
         <div class="mb-6 p-4 bg-danger-light border border-danger rounded-xl flex items-start gap-3">
-            <i data-lucide="alert-circle" class="w-5 h-5 text-danger flex-shrink-0 mt-0.5"></i>
+            <i data-lucide="alert-circle" class="w-5 h-5 text-danger shrink-0 mt-0.5"></i>
             <div class="space-y-1">
                 <p class="font-medium text-text-primary">Periksa kembali data berikut:</p>
                 @foreach ($errors->all() as $error)
@@ -53,7 +53,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
                         <x-forms.label for="transaction_date" required>Tanggal Transaksi</x-forms.label>
-                        <x-forms.input type="date" name="transaction_date" :value="old('transaction_date', now()->format('Y-m-d'))" required />
+                        <x-forms.datepicker name="transaction_date" :value="old('transaction_date', now()->format('Y-m-d'))" required />
                     </div>
                     <div>
                         <x-forms.label for="source" required>Sumber Dana</x-forms.label>

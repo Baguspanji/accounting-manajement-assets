@@ -52,52 +52,36 @@
         </div>
     </div>
 
-    <div class="bg-white rounded-2xl shadow-soft border border-slate-100 overflow-hidden">
-        <div class="p-4 border-b border-slate-100">
+    <x-table :items="$journals" empty="Belum ada perolehan aset yang dicatat.">
+        <x-slot:header>
             <h3 class="font-semibold text-text-primary">Riwayat Perolehan Aset</h3>
-        </div>
-        <div class="overflow-x-auto">
-            <table class="w-full text-left">
-                <thead class="bg-slate-50 border-b border-slate-100">
-                    <tr>
-                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider">Referensi</th>
-                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider">Aset</th>
-                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider">Tanggal</th>
-                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider">Keterangan</th>
-                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider text-right">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-100">
-                    @forelse ($journals as $journal)
-                        <tr class="hover:bg-slate-50 transition-colors">
-                            <td class="py-3 px-4 text-sm font-mono font-medium text-slate-700">{{ $journal->reference }}</td>
-                            <td class="py-3 px-4">
-                                <p class="font-medium text-text-primary text-sm">{{ $journal->journalable?->name }}</p>
-                                <p class="text-xs text-text-secondary">{{ $journal->journalable?->asset_number }}</p>
-                            </td>
-                            <td class="py-3 px-4 text-sm text-slate-600">{{ $journal->transaction_date->format('d M Y') }}</td>
-                            <td class="py-3 px-4 text-sm text-slate-600">{{ $journal->description }}</td>
-                            <td class="py-3 px-4 text-right">
-                                <a href="{{ route('acquisitions.show', $journal->id) }}" class="p-1.5 hover:bg-info-light rounded-lg text-text-secondary hover:text-info">
-                                    <i data-lucide="eye" class="w-4 h-4"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="5" class="py-8 px-4 text-center text-text-secondary">
-                                Belum ada perolehan aset yang dicatat.
-                            </td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
+        </x-slot:header>
 
-        @if ($journals->count() > 0)
-            <div>{{ $journals->links() }}</div>
-        @endif
-    </div>
+        <x-slot:head>
+            <x-table.th>Referensi</x-table.th>
+            <x-table.th>Aset</x-table.th>
+            <x-table.th>Tanggal</x-table.th>
+            <x-table.th>Keterangan</x-table.th>
+            <x-table.th align="right">Aksi</x-table.th>
+        </x-slot>
+
+        @foreach ($journals as $journal)
+            <tr class="hover:bg-slate-50 transition-colors">
+                <x-table.td class="text-sm font-mono font-medium text-slate-700">{{ $journal->reference }}</x-table.td>
+                <x-table.td>
+                    <p class="font-medium text-text-primary text-sm">{{ $journal->journalable?->name }}</p>
+                    <p class="text-xs text-text-secondary">{{ $journal->journalable?->asset_number }}</p>
+                </x-table.td>
+                <x-table.td class="text-sm text-slate-600">{{ $journal->transaction_date->format('d M Y') }}</x-table.td>
+                <x-table.td class="text-sm text-slate-600">{{ $journal->description }}</x-table.td>
+                <x-table.td align="right">
+                    <a href="{{ route('acquisitions.show', $journal->id) }}" class="p-1.5 hover:bg-info-light rounded-lg text-text-secondary hover:text-info">
+                        <i data-lucide="eye" class="w-4 h-4"></i>
+                    </a>
+                </x-table.td>
+            </tr>
+        @endforeach
+    </x-table>
 
     <script>lucide.createIcons();</script>
 @endsection

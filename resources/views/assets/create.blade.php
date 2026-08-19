@@ -65,7 +65,7 @@
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <x-forms.label for="acquisition_date" required>Tanggal Perolehan</x-forms.label>
-                                <x-forms.input type="date" name="acquisition_date" :value="now()->format('Y-m-d')" required />
+                                <x-forms.datepicker name="acquisition_date" :value="now()->format('Y-m-d')" required />
                             </div>
                             <div>
                                 <x-forms.label for="acquisition_cost" required>Harga Perolehan</x-forms.label>

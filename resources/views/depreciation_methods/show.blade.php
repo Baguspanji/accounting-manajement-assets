@@ -35,20 +35,20 @@
             <table class="w-full text-sm text-left">
                 <tbody class="divide-y divide-slate-100">
                     <tr class="hover:bg-slate-50">
-                        <th class="w-1/3 py-4 px-5 font-medium text-text-secondary">Formula</th>
-                        <td class="py-4 px-5 text-text-primary">{{ $depreciationMethod->formula ?? '-' }}</td>
+                        <x-table.label>Formula</x-table.label>
+                        <x-table.td relaxed class="text-text-primary">{{ $depreciationMethod->formula ?? '-' }}</x-table.td>
                     </tr>
                     <tr class="hover:bg-slate-50">
-                        <th class="py-4 px-5 font-medium text-text-secondary">Deskripsi</th>
-                        <td class="py-4 px-5 text-text-primary">{{ $depreciationMethod->description ?? '-' }}</td>
+                        <x-table.label>Deskripsi</x-table.label>
+                        <x-table.td relaxed class="text-text-primary">{{ $depreciationMethod->description ?? '-' }}</x-table.td>
                     </tr>
                     <tr class="hover:bg-slate-50">
-                        <th class="py-4 px-5 font-medium text-text-secondary">Status</th>
-                        <td class="py-4 px-5">
+                        <x-table.label>Status</x-table.label>
+                        <x-table.td relaxed>
                             <span class="px-2.5 py-1 inline-flex text-xs font-semibold rounded-full {{ $depreciationMethod->is_active ? 'bg-primary-light text-primary' : 'bg-slate-100 text-slate-600' }}">
                                 {{ $depreciationMethod->is_active ? 'Aktif' : 'Non-Aktif' }}
                             </span>
-                        </td>
+                        </x-table.td>
                     </tr>
                 </tbody>
             </table>

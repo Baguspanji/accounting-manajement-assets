@@ -35,41 +35,32 @@
             </div>
         </div>
         <div class="col-span-1 md:col-span-2">
-            <div class="bg-white rounded-2xl shadow-soft border border-slate-100 overflow-hidden">
-                <div class="p-5 border-b border-slate-100">
-                    <h3 class="font-bold text-text-primary">Konfigurasi Akun & Default</h3>
-                </div>
-                <div class="p-0">
-                    <table class="w-full text-sm text-left">
-                        <tbody class="divide-y divide-slate-100">
-                            <tr class="hover:bg-slate-50">
-                                <th class="w-1/3 py-4 px-5 font-medium text-text-secondary">Akun Aset</th>
-                                <td class="py-4 px-5 text-text-primary">{{ $assetCategory->assetAccount?->name ?? '-' }}</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-text-secondary">Akun Beban Penyusutan</th>
-                                <td class="py-4 px-5 text-text-primary">{{ $assetCategory->depreciationExpenseAccount?->name ?? '-' }}</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-text-secondary">Akun Akumulasi Penyusutan</th>
-                                <td class="py-4 px-5 text-text-primary">{{ $assetCategory->accumulatedDepreciationAccount?->name ?? '-' }}</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-text-secondary">Umur Manfaat Default</th>
-                                <td class="py-4 px-5 text-text-primary">{{ $assetCategory->default_useful_life ? $assetCategory->default_useful_life.' tahun' : '-' }}</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-text-secondary">Nilai Residu Default</th>
-                                <td class="py-4 px-5 text-text-primary">Rp {{ number_format($assetCategory->default_residual_value, 0, ',', '.') }}</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-text-secondary">Jumlah Aset</th>
-                                <td class="py-4 px-5 text-text-primary">{{ $assetCategory->assets->count() }} aset</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <x-table.info title="Konfigurasi Akun & Default">
+                <tr class="hover:bg-slate-50">
+                    <x-table.label>Akun Aset</x-table.label>
+                    <x-table.td relaxed class="text-text-primary">{{ $assetCategory->assetAccount?->name ?? '-' }}</x-table.td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                    <x-table.label>Akun Beban Penyusutan</x-table.label>
+                    <x-table.td relaxed class="text-text-primary">{{ $assetCategory->depreciationExpenseAccount?->name ?? '-' }}</x-table.td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                    <x-table.label>Akun Akumulasi Penyusutan</x-table.label>
+                    <x-table.td relaxed class="text-text-primary">{{ $assetCategory->accumulatedDepreciationAccount?->name ?? '-' }}</x-table.td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                    <x-table.label>Umur Manfaat Default</x-table.label>
+                    <x-table.td relaxed class="text-text-primary">{{ $assetCategory->default_useful_life ? $assetCategory->default_useful_life.' tahun' : '-' }}</x-table.td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                    <x-table.label>Nilai Residu Default</x-table.label>
+                    <x-table.td relaxed class="text-text-primary">Rp {{ number_format($assetCategory->default_residual_value, 0, ',', '.') }}</x-table.td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                    <x-table.label>Jumlah Aset</x-table.label>
+                    <x-table.td relaxed class="text-text-primary">{{ $assetCategory->assets->count() }} aset</x-table.td>
+                </tr>
+            </x-table.info>
 
             <div class="mt-6 flex gap-3">
                 <a href="{{ route('asset-categories.edit', $assetCategory->id) }}" class="flex-1 bg-warning text-white py-2.5 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-warning/90 transition-colors">

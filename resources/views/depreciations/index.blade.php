@@ -38,7 +38,7 @@
 
     <div class="bg-white rounded-2xl shadow-soft border border-slate-100 p-6 mb-6">
         <div class="flex flex-col md:flex-row md:items-end gap-4">
-            <div class="w-full md:w-64">
+            <div class="w-full md:w-96">
                 <x-forms.label for="month">Bulan</x-forms.label>
                 @php $monthNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']; @endphp
                 <x-forms.select name="month" id="month">
@@ -83,67 +83,51 @@
         </p>
     </div>
 
-    <div class="bg-white rounded-2xl shadow-soft border border-slate-100 overflow-hidden">
-        <div class="p-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-3">
+<x-table :items="$depreciations" empty="Belum ada data penyusutan. Pilih periode lalu klik &quot;Jalankan Penyusutan&quot;.">
+        <x-slot:header>
             <h3 class="font-semibold text-text-primary">Riwayat Penyusutan</h3>
             @if ($periods->isNotEmpty())
                 <div class="flex items-center gap-2 text-sm">
                     <span class="text-text-secondary">Periode:</span>
                     @foreach ($periods as $p)
                         <a href="{{ route('depreciations.index', ['period' => $p]) }}"
-                            class="px-3 py-1 rounded-lg font-mono text-xs {{ $period === $p ? 'bg-primary text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200' }}">
+                           class="px-3 py-1 rounded-lg font-mono text-xs {{ $period === $p ? 'bg-primary text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200' }}">
                             {{ $p }}
                         </a>
                     @endforeach
                 </div>
             @endif
-        </div>
-        <div class="overflow-x-auto">
-            <table class="w-full text-left">
-                <thead class="bg-slate-50 border-b border-slate-100">
-                    <tr>
-                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider">Aset</th>
-                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider">Periode</th>
-                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider text-right">Beban Penyusutan</th>
-                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider text-right">Akumulasi</th>
-                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider text-right">Nilai Buku</th>
-                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider">Status</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-100">
-                    @forelse ($depreciations as $depreciation)
-                        <tr class="hover:bg-slate-50 transition-colors">
-                            <td class="py-3 px-4">
-                                <p class="font-medium text-text-primary text-sm">{{ $depreciation->asset?->name }}</p>
-                                <p class="text-xs text-text-secondary">{{ $depreciation->asset?->asset_number }}</p>
-                            </td>
-                            <td class="py-3 px-4 text-sm font-mono text-slate-600">{{ $depreciation->period }}</td>
-                            <td class="py-3 px-4 text-sm text-slate-600 text-right">{{ number_format($depreciation->expense_amount, 0, ',', '.') }}</td>
-                            <td class="py-3 px-4 text-sm text-slate-600 text-right">{{ number_format($depreciation->accumulated_after, 0, ',', '.') }}</td>
-                            <td class="py-3 px-4 text-sm text-slate-600 text-right">{{ number_format($depreciation->book_value_after, 0, ',', '.') }}</td>
-                            <td class="py-3 px-4">
-                                @if ($depreciation->status === 'posted')
-                                    <span class="px-2.5 py-1 inline-flex text-xs font-semibold rounded-full bg-primary-light text-primary">Posted</span>
-                                @else
-                                    <span class="px-2.5 py-1 inline-flex text-xs font-semibold rounded-full bg-warning-light text-warning">Pending</span>
-                                @endif
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="6" class="py-8 px-4 text-center text-text-secondary">
-                                Belum ada data penyusutan. Pilih periode lalu klik "Jalankan Penyusutan".
-                            </td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
+        </x-slot:header>
 
-        @if ($depreciations->count() > 0)
-            <div>{{ $depreciations->links() }}</div>
-        @endif
-    </div>
+        <x-slot:head>
+            <x-table.th>Aset</x-table.th>
+            <x-table.th>Periode</x-table.th>
+            <x-table.th align="right">Beban Penyusutan</x-table.th>
+            <x-table.th align="right">Akumulasi</x-table.th>
+            <x-table.th align="right">Nilai Buku</x-table.th>
+            <x-table.th>Status</x-table.th>
+        </x-slot>
+
+        @foreach ($depreciations as $depreciation)
+            <tr class="hover:bg-slate-50 transition-colors">
+                <x-table.td>
+                    <p class="font-medium text-text-primary text-sm">{{ $depreciation->asset?->name }}</p>
+                    <p class="text-xs text-text-secondary">{{ $depreciation->asset?->asset_number }}</p>
+                </x-table.td>
+                <x-table.td class="text-sm font-mono text-slate-600">{{ $depreciation->period }}</x-table.td>
+                <x-table.td align="right" class="text-sm text-slate-600">{{ number_format($depreciation->expense_amount, 0, ',', '.') }}</x-table.td>
+                <x-table.td align="right" class="text-sm text-slate-600">{{ number_format($depreciation->accumulated_after, 0, ',', '.') }}</x-table.td>
+                <x-table.td align="right" class="text-sm text-slate-600">{{ number_format($depreciation->book_value_after, 0, ',', '.') }}</x-table.td>
+                <x-table.td>
+                    @if ($depreciation->status === 'posted')
+                        <span class="px-2.5 py-1 inline-flex text-xs font-semibold rounded-full bg-primary-light text-primary">Posted</span>
+                    @else
+                        <span class="px-2.5 py-1 inline-flex text-xs font-semibold rounded-full bg-warning-light text-warning">Pending</span>
+                    @endif
+                </x-table.td>
+            </tr>
+        @endforeach
+    </x-table>
 
     <script>
         document.getElementById('month')?.addEventListener('change', syncPeriod);

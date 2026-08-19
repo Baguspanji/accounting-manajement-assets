@@ -42,6 +42,14 @@ class AssetModuleSmokeTest extends TestCase
 
         $this->actingAs($user)->get(route('documentation.show', 1))->assertOk();
         $this->actingAs($user)->get(route('documentation.show', 999))->assertNotFound();
+
+        $asset = Asset::firstOrFail();
+        $category = AssetCategory::firstOrFail();
+        $method = DepreciationMethod::firstOrFail();
+
+        $this->actingAs($user)->get(route('assets.show', $asset))->assertOk();
+        $this->actingAs($user)->get(route('asset-categories.show', $category))->assertOk();
+        $this->actingAs($user)->get(route('depreciation-methods.show', $method))->assertOk();
     }
 
     public function test_non_admin_user_is_blocked(): void

@@ -18,19 +18,19 @@
         <table class="w-full text-left">
             <thead class="bg-slate-50 border-b border-slate-100">
                 <tr>
-                    <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider">Kode</th>
-                    <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider">Akun</th>
-                    <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider text-right">Debit</th>
-                    <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider text-right">Kredit</th>
+                    <x-table.th>Kode</x-table.th>
+                    <x-table.th>Akun</x-table.th>
+                    <x-table.th align="right">Debit</x-table.th>
+                    <x-table.th align="right">Kredit</x-table.th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-slate-100">
                 @foreach ($journal->details as $detail)
                     <tr class="hover:bg-slate-50">
-                        <td class="py-3 px-4 text-sm font-mono text-slate-600">{{ $detail->account->code }}</td>
-                        <td class="py-3 px-4 text-sm font-medium text-text-primary">{{ $detail->account->name }}</td>
-                        <td class="py-3 px-4 text-sm text-slate-600 text-right">{{ $detail->debit > 0 ? number_format($detail->debit, 0, ',', '.') : '-' }}</td>
-                        <td class="py-3 px-4 text-sm text-slate-600 text-right">{{ $detail->credit > 0 ? number_format($detail->credit, 0, ',', '.') : '-' }}</td>
+                        <x-table.td class="text-sm font-mono text-slate-600">{{ $detail->account->code }}</x-table.td>
+                        <x-table.td class="text-sm font-medium text-text-primary">{{ $detail->account->name }}</x-table.td>
+                        <x-table.td align="right" class="text-sm text-slate-600">{{ $detail->debit > 0 ? number_format($detail->debit, 0, ',', '.') : '-' }}</x-table.td>
+                        <x-table.td align="right" class="text-sm text-slate-600">{{ $detail->credit > 0 ? number_format($detail->credit, 0, ',', '.') : '-' }}</x-table.td>
                     </tr>
                 @endforeach
             </tbody>
