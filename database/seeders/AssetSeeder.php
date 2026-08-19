@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Member;
+use App\Models\Asset;
 use Illuminate\Database\Seeder;
 
-class MemberSeeder extends Seeder
+class AssetSeeder extends Seeder
 {
     public function run(): void
     {
-        Member::factory()->count(20)->create();
+        Asset::factory()->count(15)->create();
     }
 }

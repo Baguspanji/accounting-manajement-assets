@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - SP Syariah</title>
+    <title>Login - Akuntansi Aset</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>body { font-family: 'Inter', sans-serif; }</style>
@@ -15,23 +15,23 @@
             <div class="hidden md:flex flex-col justify-between bg-primary p-8 text-white">
                 <div class="flex items-center space-x-2">
                     <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
-                        <i data-lucide="landmark" class="w-6 h-6"></i>
+                        <i data-lucide="box" class="w-6 h-6"></i>
                     </div>
-                    <span class="font-bold text-lg">SP Syariah</span>
+                    <span class="font-bold text-lg">Akuntansi Aset</span>
                 </div>
                 <div>
-                    <h2 class="text-3xl font-bold mb-2">Aplikasi Pembelajaran Akuntansi Simpan Pinjam Syariah</h2>
-                    <p class="text-white/80 text-sm">Belajar konsep akuntansi syariah secara praktis dan modern.</p>
+                    <h2 class="text-3xl font-bold mb-2">Aplikasi Pembelajaran Akuntansi Manajemen Aset</h2>
+                    <p class="text-white/80 text-sm">Belajar konsep akuntansi aset tetap secara praktis dan modern.</p>
                 </div>
-                <div class="text-xs text-white/60">&copy; {{ date('Y') }} SP Syariah Learning.</div>
+                <div class="text-xs text-white/60">&copy; {{ date('Y') }} Akuntansi Aset Learning.</div>
             </div>
 
             <div class="p-8 md:p-12 flex flex-col justify-center">
                 <div class="md:hidden flex items-center space-x-2 mb-8">
                     <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white">
-                        <i data-lucide="landmark" class="w-6 h-6"></i>
+                        <i data-lucide="box" class="w-6 h-6"></i>
                     </div>
-                    <span class="font-bold text-lg text-slate-800">SP Syariah</span>
+                    <span class="font-bold text-lg text-slate-800">Akuntansi Aset</span>
                 </div>
 
                 <h1 class="text-2xl font-bold text-slate-800 mb-2">Selamat Datang Kembali</h1>
@@ -43,7 +43,7 @@
                         <label class="block text-sm font-medium text-slate-700 mb-1.5">Email / Username</label>
                         <div class="relative">
                             <i data-lucide="mail" class="w-5 h-5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
-                            <input type="email" name="email" value="{{ old('email') }}" placeholder="admin@spsyariah.com" required
+                            <input type="email" name="email" value="{{ old('email') }}" placeholder="admin@akuntansiaset.com" required
                                 class="w-full pl-10 pr-4 py-2.5 border rounded-xl focus:ring-2 focus:ring-primary/30 focus:border-primary outline-none transition-all {{ $errors->has('email') ? 'border-danger' : 'border-slate-200' }}">
                         </div>
                         @error('email')

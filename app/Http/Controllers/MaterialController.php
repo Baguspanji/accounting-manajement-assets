@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class MaterialController extends Controller
 {
     public function index()
@@ -11,8 +9,8 @@ class MaterialController extends Controller
         $materials = [
             [
                 'id' => 1,
-                'title' => 'Perbedaan Simpan Pinjam Konvensional dan Syariah',
-                'description' => 'Laporan analitis mengenai perbedaan mendasar antara skema simpan pinjam konvensional dan syariah di Indonesia.',
+                'title' => 'Pengertian & Karakteristik Aset Tetap',
+                'description' => 'Memahami definisi aset tetap, kriteria pengakuan, dan jenis-jenis aset tetap menurut PSAK 216.',
                 'level' => 'Pemula',
                 'duration' => '45 menit',
                 'category' => 'Teori',
@@ -20,8 +18,8 @@ class MaterialController extends Controller
             ],
             [
                 'id' => 2,
-                'title' => 'Produk Simpanan Syariah',
-                'description' => 'Memahami produk simpanan syariah seperti Wadiah dan Mudharabah serta mekanisme imbalan dana.',
+                'title' => 'Harga Perolehan Aset Tetap',
+                'description' => 'Mempelajari komponen biaya yang dikapitalisasi hingga aset siap digunakan.',
                 'level' => 'Menengah',
                 'duration' => '30 menit',
                 'category' => 'Teori',
@@ -29,17 +27,17 @@ class MaterialController extends Controller
             ],
             [
                 'id' => 3,
-                'title' => 'Akad-Akad Pembiayaan Syariah',
-                'description' => 'Mendalami berbagai akad pembiayaan syariah: Murabahah, Musyarakah, Mudharabah, Ijarah, dan Qardh.',
+                'title' => 'Metode Penyusutan Aset Tetap',
+                'description' => 'Mendalami metode garis lurus, saldo menurun, jumlah angka tahun, dan unit produksi.',
                 'level' => 'Menengah',
                 'duration' => '50 menit',
-                'category' => 'Teori',
+                'category' => 'Teknis',
                 'completed' => false,
             ],
             [
                 'id' => 4,
-                'title' => 'Akuntansi Koperasi Syariah',
-                'description' => 'Mempelajari pencatatan akuntansi khusus untuk produk syariah sesuai PSAK Syariah.',
+                'title' => 'Pelepasan & Penghapusan Aset',
+                'description' => 'Mempelajari pencatatan penjualan, penghapusan, dan laba/rugi pelepasan aset.',
                 'level' => 'Lanjut',
                 'duration' => '60 menit',
                 'category' => 'Teknis',

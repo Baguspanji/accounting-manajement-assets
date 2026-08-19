@@ -11,7 +11,7 @@
 @section('content')
     <div class="mb-6">
         <h2 class="text-xl font-bold text-slate-800">Daftar Studi Kasus</h2>
-        <p class="text-slate-500 text-sm">Simulasi transaksi akuntansi koperasi syariah.</p>
+        <p class="text-slate-500 text-sm">Simulasi transaksi akuntansi manajemen aset.</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -37,11 +37,8 @@
                         <i data-lucide="tag" class="w-3 h-3"></i> Kategori: {{ $case['category'] }}
                     </div>
                     <div class="flex items-center gap-2">
-                        <i data-lucide="scroll-text" class="w-3 h-3"></i> Akad: <span class="font-medium text-slate-700">{{ $case['akad'] }}</span>
+                        <i data-lucide="clock" class="w-3 h-3"></i> Durasi: <span class="font-medium text-slate-700">{{ $case['duration'] }}</span>
                     </div>
-                </div>
-                <div class="w-full h-1.5 bg-slate-100 rounded-full mb-4 overflow-hidden">
-                    <div class="h-full bg-primary" style="width: {{ $case['progress'] }}%"></div>
                 </div>
                 <a href="{{ route('study-cases.show', $case['id']) }}" class="w-full block text-center bg-primary text-white py-2 rounded-xl text-sm font-semibold hover:bg-primary-dark transition-colors shadow-sm">
                     Kerjakan Kasus

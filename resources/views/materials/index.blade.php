@@ -11,7 +11,7 @@
 @section('content')
     <div class="mb-6">
         <h2 class="text-xl font-bold text-slate-800">Materi Pembelajaran</h2>
-        <p class="text-slate-500 text-sm">Pelajari konsep akuntansi simpan pinjam syariah.</p>
+        <p class="text-slate-500 text-sm">Pelajari konsep akuntansi manajemen aset.</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

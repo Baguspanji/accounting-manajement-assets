@@ -2,9 +2,9 @@
     <div class="h-16 flex items-center justify-between px-4 border-b border-slate-200">
         <div class="flex items-center space-x-2">
             <div class="w-8 h-8 bg-primary rounded-xl flex items-center justify-center text-white">
-                <i data-lucide="landmark" class="w-5 h-5"></i>
+                <i data-lucide="box" class="w-5 h-5"></i>
             </div>
-            <span class="font-bold text-slate-800 hidden md:block">SP Syariah</span>
+            <span class="font-bold text-slate-800 hidden md:block">Akuntansi Aset</span>
         </div>
         <button onclick="toggleSidebar()" class="md:hidden text-slate-500"><i data-lucide="x"></i></button>
     </div>
@@ -17,31 +17,35 @@
         </a>
 
         <p class="px-3 text-xs font-semibold text-slate-400 uppercase mt-4 mb-1">Master Data</p>
-        <a href="{{ route('members.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('members.*') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
-            <i data-lucide="users" class="w-5 h-5"></i>
-            <span class="text-sm">Anggota</span>
+        <a href="{{ route('assets.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('assets.*') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
+            <i data-lucide="package" class="w-5 h-5"></i>
+            <span class="text-sm">Aset</span>
+        </a>
+        <a href="{{ route('asset-categories.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('asset-categories.*') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
+            <i data-lucide="folder" class="w-5 h-5"></i>
+            <span class="text-sm">Kategori Aset</span>
+        </a>
+        <a href="{{ route('depreciation-methods.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('depreciation-methods.*') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
+            <i data-lucide="calculator" class="w-5 h-5"></i>
+            <span class="text-sm">Metode Penyusutan</span>
         </a>
         <a href="{{ route('accounts.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('accounts.*') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
             <i data-lucide="list" class="w-5 h-5"></i>
             <span class="text-sm">Chart of Account</span>
         </a>
-        <a href="{{ route('contracts.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('contracts.*') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
-            <i data-lucide="scroll-text" class="w-5 h-5"></i>
-            <span class="text-sm">Akad Syariah</span>
-        </a>
 
         <p class="px-3 text-xs font-semibold text-slate-400 uppercase mt-4 mb-1">Transaksi</p>
         <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors">
-            <i data-lucide="wallet" class="w-5 h-5"></i>
-            <span class="text-sm">Simpanan</span>
+            <i data-lucide="package-plus" class="w-5 h-5"></i>
+            <span class="text-sm">Perolehan Aset</span>
         </a>
         <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors">
-            <i data-lucide="banknote" class="w-5 h-5"></i>
-            <span class="text-sm">Pembiayaan</span>
+            <i data-lucide="trending-down" class="w-5 h-5"></i>
+            <span class="text-sm">Penyusutan</span>
         </a>
         <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors">
-            <i data-lucide="receipt" class="w-5 h-5"></i>
-            <span class="text-sm">Pembayaran</span>
+            <i data-lucide="package-minus" class="w-5 h-5"></i>
+            <span class="text-sm">Pelepasan Aset</span>
         </a>
 
         <p class="px-3 text-xs font-semibold text-slate-400 uppercase mt-4 mb-1">Akuntansi</p>

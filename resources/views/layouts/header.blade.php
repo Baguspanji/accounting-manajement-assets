@@ -14,7 +14,7 @@
     <div class="flex items-center space-x-4">
         <!-- <div class="hidden md:flex items-center bg-slate-100 rounded-xl px-3 py-2 w-64">
             <i data-lucide="search" class="w-4 h-4 text-slate-500 mr-2"></i>
-            <input type="text" placeholder="Cari data anggota, akad..." class="bg-transparent text-sm outline-none w-full">
+            <input type="text" placeholder="Cari data aset, akun..." class="bg-transparent text-sm outline-none w-full">
         </div>
         <button class="relative p-2 rounded-xl hover:bg-slate-100">
             <i data-lucide="bell" class="w-5 h-5 text-slate-600"></i>

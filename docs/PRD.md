@@ -1,10 +1,10 @@
-# PRD: Aplikasi Pembelajaran Akuntansi Simpan Pinjam Syariah
+# PRD: Aplikasi Pembelajaran Akuntansi Manajemen Aset (Aset Tetap)
 
 **Versi:** 1.0
 
 ## 1. Ringkasan
-Aplikasi web yang digunakan sebagai media pembelajaran transaksi koperasi simpan pinjam syariah.
-Fokus utama aplikasi adalah simulasi transaksi dan pencatatan akuntansi otomatis.
+Aplikasi web yang digunakan sebagai media pembelajaran akuntansi aset tetap / manajemen aset (fixed asset management accounting).
+Fokus utama aplikasi adalah simulasi transaksi aset dan pencatatan akuntansi otomatis: perolehan, penyusutan, hingga pelepasan.
 
 **Target pengguna:**
 - Guru
@@ -14,11 +14,12 @@ Fokus utama aplikasi adalah simulasi transaksi dan pencatatan akuntansi otomatis
 
 ## 2. Tujuan Sistem
 Sistem harus mampu:
-- Melakukan simulasi transaksi koperasi syariah
-- Menghasilkan jurnal otomatis
-- Menghasilkan laporan keuangan
+- Melakukan simulasi transaksi manajemen aset (perolehan, penyusutan, pelepasan)
+- Menghasilkan jurnal otomatis setiap transaksi
+- Menghitung penyusutan dengan beberapa metode (garis lurus, saldo menurun, jumlah angka tahun, unit produksi)
+- Menghasilkan laporan keuangan terkait aset (kartu aset, daftar penyusutan, nilai buku, laba/rugi pelepasan)
 - Memberikan studi kasus pembelajaran
-- Menampilkan perubahan saldo akun secara realtime
+- Menampilkan perubahan nilai buku aset secara realtime
 
 ## 3. Role
 
@@ -27,8 +28,8 @@ Mengelola seluruh sistem.
 Hak akses:
 - User
 - COA
-- Jenis Akad
-- Tahun Ajaran
+- Kategori Aset
+- Metode Penyusutan
 - Backup
 
 ### Guru
@@ -40,7 +41,7 @@ Hak akses:
 ### Siswa
 - Login
 - Mengerjakan studi kasus
-- Input transaksi
+- Input transaksi aset
 - Melihat jurnal
 - Melihat laporan
 
@@ -48,91 +49,90 @@ Hak akses:
 
 ### Dashboard
 **Widget:**
-- Total Anggota
-- Total Simpanan
-- Total Pembiayaan
-- Total Kas
-- Grafik Transaksi
+- Total Aset (Register)
+- Nilai Perolehan Total
+- Nilai Buku Total
+- Akumulasi Penyusutan
+- Grafik Penyusutan per Kategori
 - Aktivitas Terakhir
 
-### Master Anggota
-**Operasi:** CRUD
-**Field:**
-- Nomor Anggota
-- Nama
-- Alamat
-- No HP
-- Status
-
-### Master COA
+### Master Kategori Aset
 **Operasi:** CRUD
 **Field:**
 - Kode
-- Nama Akun
-- Kategori
-- Normal Balance
-- Parent
+- Nama Kategori (Tanah, Bangunan, Kendaraan, Mesin, Peralatan, Komputer)
+- Akun Aset (default)
+- Akun Beban Penyusutan (default)
+- Akun Akumulasi Penyusutan (default)
+- Umur Manfaat Default
+- Nilai Residu Default
 
-### Master Akad
+### Master Aset (Kartu/Register Aset)
+**Operasi:** CRUD
+**Field:**
+- Nomor Aset
+- Nama Aset
+- Kategori
+- Nomor Seri
+- Lokasi
+- Penanggung Jawab
+- Pemasok/Supplier
+- Tanggal Perolehan
+- Harga Perolehan
+- Nilai Residu
+- Umur Manfaat
+- Metode Penyusutan
+- Status
+
+### Master Metode Penyusutan
 **Operasi:** CRUD
 **Contoh:**
-- Wadiah
-- Mudharabah
-- Musyarakah
-- Murabahah
-- Ijarah
-- Qardh
+- Garis Lurus (Straight Line)
+- Saldo Menurun (Double Declining Balance)
+- Jumlah Angka Tahun (Sum of Year Digits)
+- Unit Produksi
 
-Setiap akad memiliki:
-- Deskripsi
-- Jurnal default
-- Akun debit
-- Akun kredit
+Setiap metode memiliki:
+- Kode
+- Deskripsi / formula
+- Parameter (umur manfaat, nilai residu, kapasitas produksi)
 
-### Simpanan
-**Jenis:**
-- Pokok
-- Wajib
-- Sukarela
-
-**Transaksi:**
-- Setor
-- Tarik
-
-**Output:**
-- Jurnal
-- Saldo anggota
-- Saldo kas
-
-### Pembiayaan
-**Jenis:**
-- Murabahah
-- Mudharabah
-- Musyarakah
-- Ijarah
-- Qardh
-
-**Field:**
-- Anggota
-- Akad
-- Nominal
-- Margin
-- Tenor
+### Transaksi Perolehan Aset
+**Input:**
+- Aset
 - Tanggal
+- Nilai Perolehan
+- Sumber Dana (Kas / Utang)
 
 **Output:**
-- Jadwal angsuran
-- Jurnal otomatis
+- Kartu aset terisi
+- Jurnal: Debit Aset Tetap / Kredit Kas atau Utang
+- Update nilai aset
 
-### Pembayaran
+### Penyusutan
+**Input:**
+- Periode (bulan/tahun)
+- Eksekusi batch (run depreciation)
+
+**Output:**
+- Jadwal penyusutan per aset per periode
+- Jurnal: Debit Beban Penyusutan / Kredit Akumulasi Penyusutan
+- Update nilai buku aset
+
+### Pelepasan Aset
+**Jenis:**
+- Penjualan
+- Penghapusan (rusak/hilang)
+- Transfer
+
 **Input:**
 - Tanggal
-- Nominal
-- Metode
+- Jenis
+- Harga Jual (jika penjualan)
 
 **Output:**
-- Jurnal
-- Update sisa pembiayaan
+- Jurnal pelepasan (akumulasi penyusutan dihapus, aset dikeluarkan, laba/rugi diakui)
+- Update status aset
 
 ### Jurnal
 **Menampilkan:**
@@ -145,89 +145,93 @@ Setiap akad memiliki:
 **Status:** Readonly (Tidak boleh diubah manual).
 
 ### Buku Besar
-Menampilkan mutasi akun.
+Menampilkan mutasi akun (Aset Tetap, Akumulasi Penyusutan, Beban Penyusutan, Kas, dsb).
 
 ### Neraca Saldo
 Generate otomatis.
 
 ### Laporan
-- Simpanan
-- Pembiayaan
-- Kas
-- SHU
+- Kartu Aset (per aset)
+- Daftar Aset per Kategori
+- Jadwal Penyusutan
+- Nilai Buku per Kategori
+- Laba/Rugi Pelepasan Aset
 - Neraca
+- SHU / Laba Rugi
 - Arus Kas
 
 ## 5. Alur Sistem
 
-`Login` ➔ `Dashboard` ➔ `Pilih Studi Kasus` ➔ `Input Transaksi` ➔ `Validasi` ➔ `Generate Jurnal` ➔ `Update Saldo` ➔ `Generate Laporan` ➔ `Selesai`
+`Login` ➔ `Dashboard` ➔ `Pilih Studi Kasus` ➔ `Input Transaksi Aset` ➔ `Validasi` ➔ `Generate Jurnal` ➔ `Update Nilai Buku` ➔ `Generate Laporan` ➔ `Selesai`
 
 ## 6. Business Rules
 
-### Simpanan
-**Saat setor:**
-- Kas bertambah
-- Simpanan bertambah
+### Perolehan Aset
+- Harga perolehan = harga beli + biaya langsung (transport, instalasi) hingga aset siap digunakan
+- **Saat perolehan tunai:** Debit Aset Tetap / Kredit Kas
+- **Saat perolehan kredit:** Debit Aset Tetap / Kredit Utang Usaha
 
-**Saat tarik:**
-- Kas berkurang
-- Simpanan berkurang
+### Penyusutan
+Faktor: harga perolehan, nilai residu, umur manfaat, metode.
+- **Saat penyusutan:** Debit Beban Penyusutan / Kredit Akumulasi Penyusutan
+- Akumulasi penyusutan bertambah, nilai buku berkurang
+- Tanah tidak disusutkan
 
-### Murabahah
-**Saat akad:**
-- Pembiayaan Murabahah bertambah
-- Kas berkurang
+#### Metode Garis Lurus
+Beban sama tiap periode: `(HP − NR) / n`
 
-**Saat angsuran:**
-- Kas bertambah
-- Piutang berkurang
-- Margin diakui sesuai jadwal
+#### Metode Saldo Menurun (DDB)
+Tarif = 2 × (1/n); beban = tarif × nilai buku awal periode. Nilai residu tidak diperhitungkan dalam tarif.
 
-### Mudharabah
-**Input:** Modal
-**Output:** Nisbah, Pembagian hasil
+#### Metode Jumlah Angka Tahun (SOYD)
+Penyebut = `n(n+1)/2`; beban = (sisa umur / penyebut) × (HP − NR)
 
-### Musyarakah
-**Input:** Modal koperasi, Modal anggota
-**Output:** Pembagian keuntungan
+#### Metode Unit Produksi
+Beban = (HP − NR) × (produksi periode / kapasitas total)
 
-### Ijarah
-**Input:** Nilai sewa, Lama sewa
-**Output:** Pendapatan sewa
+### Pelepasan Aset
+**Saat dijual:**
+- Akumulasi Penyusutan dihapus (Debit)
+- Aset Tetap dikeluarkan (Kredit)
+- Kas/Piutang dicatat (Debit) sebesar harga jual
+- Selisih nilai buku vs harga jual → Laba (Kredit) atau Rugi (Debit)
 
-### Qardh
-- Tidak ada margin
-- Hanya pokok
+**Saat dihapus (rusak/hilang):**
+- Akumulasi Penyusutan dihapus (Debit)
+- Aset Tetap dikeluarkan (Kredit)
+- Nilai buku tersisa → Rugi Penghapusan (Debit)
 
 ## 7. Studi Kasus
 Minimal terdapat:
-- **Case 1:** Simpanan Pokok
-- **Case 2:** Simpanan Wajib
-- **Case 3:** Murabahah Motor
-- **Case 4:** Murabahah Laptop
-- **Case 5:** Mudharabah Warung
-- **Case 6:** Musyarakah Usaha
-- **Case 7:** Ijarah Kendaraan
-- **Case 8:** Qardh
+- **Case 1:** Perolehan Peralatan Kantor Tunai
+- **Case 2:** Perolehan Kendaraan Kredit
+- **Case 3:** Penyusutan Garis Lurus
+- **Case 4:** Penyusutan Saldo Menurun
+- **Case 5:** Penyusutan Jumlah Angka Tahun
+- **Case 6:** Penyusutan Unit Produksi
+- **Case 7:** Penjualan Aset (Laba)
+- **Case 8:** Penghapusan Aset (Rugi)
 
 ## 8. Struktur Menu
 - **Dashboard**
 - **Master**
-  - Anggota
+  - Kategori Aset
+  - Aset (Register/Kartu)
+  - Metode Penyusutan
   - COA
-  - Akad
 - **Transaksi**
-  - Simpanan
-  - Pembiayaan
-  - Pembayaran
+  - Perolehan Aset
+  - Penyusutan
+  - Pelepasan Aset
 - **Akuntansi**
   - Jurnal
   - Buku Besar
   - Neraca Saldo
 - **Laporan**
-  - Neraca
-  - SHU
-  - Kas
+  - Kartu Aset
+  - Jadwal Penyusutan
+  - Nilai Buku
+  - Laba/Rugi Pelepasan
 - **Pembelajaran**
   - Materi
   - Studi Kasus
@@ -237,19 +241,17 @@ Minimal terdapat:
 ## 9. Database (High Level)
 Tabel utama:
 - `users`
-- `classes`
-- `students`
-- `members`
+- `asset_categories`
+- `assets`
+- `depreciation_methods`
+- `asset_acquisitions`
+- `depreciations`
+- `asset_disposals`
 - `accounts`
-- `account_groups`
 - `journals`
 - `journal_details`
-- `saving_products`
-- `saving_transactions`
-- `financing_products`
-- `financing_transactions`
-- `installments`
-- `profit_sharing`
+- `classes`
+- `students`
 - `study_cases`
 - `materials`
 - `quizzes`
@@ -257,12 +259,26 @@ Tabel utama:
 ## 10. Routes & View
 
 ### Master
-- `GET /members` - Daftar anggota
-- `GET /members/create` - Form tambah anggota
-- `POST /members` - Simpan anggota baru
-- `GET /members/{id}/edit` - Form edit anggota
-- `PUT /members/{id}` - Update anggota
-- `DELETE /members/{id}` - Hapus anggota
+- `GET /assets` - Daftar aset
+- `GET /assets/create` - Form tambah aset
+- `POST /assets` - Simpan aset baru
+- `GET /assets/{id}/edit` - Form edit aset
+- `PUT /assets/{id}` - Update aset
+- `DELETE /assets/{id}` - Hapus aset
+
+- `GET /asset-categories` - Daftar kategori aset
+- `GET /asset-categories/create` - Form tambah kategori
+- `POST /asset-categories` - Simpan kategori baru
+- `GET /asset-categories/{id}/edit` - Form edit kategori
+- `PUT /asset-categories/{id}` - Update kategori
+- `DELETE /asset-categories/{id}` - Hapus kategori
+
+- `GET /depreciation-methods` - Daftar metode penyusutan
+- `GET /depreciation-methods/create` - Form tambah metode
+- `POST /depreciation-methods` - Simpan metode baru
+- `GET /depreciation-methods/{id}/edit` - Form edit metode
+- `PUT /depreciation-methods/{id}` - Update metode
+- `DELETE /depreciation-methods/{id}` - Hapus metode
 
 - `GET /accounts` - Daftar COA
 - `GET /accounts/create` - Form tambah akun
@@ -271,25 +287,17 @@ Tabel utama:
 - `PUT /accounts/{id}` - Update akun
 - `DELETE /accounts/{id}` - Hapus akun
 
-- `GET /contracts` - Daftar akad
-- `GET /contracts/create` - Form tambah akad
-- `POST /contracts` - Simpan akad baru
-- `GET /contracts/{id}/edit` - Form edit akad
-- `PUT /contracts/{id}` - Update akad
-- `DELETE /contracts/{id}` - Hapus akad
-
 ### Transaksi
-- `GET /savings` - Daftar transaksi simpanan
-- `GET /savings/create` - Form input simpanan
-- `POST /savings` - Proses simpanan (setor/tarik)
+- `GET /acquisitions` - Daftar perolehan aset
+- `GET /acquisitions/create` - Form perolehan aset
+- `POST /acquisitions` - Proses perolehan + jurnal otomatis
 
-- `GET /financings` - Daftar pembiayaan
-- `GET /financings/create` - Form input pembiayaan
-- `POST /financings` - Proses pembiayaan
+- `GET /depreciations` - Daftar jadwal penyusutan
+- `POST /depreciations/run` - Eksekusi penyusutan periodik + jurnal otomatis
 
-- `GET /installments` - Daftar pembayaran
-- `GET /installments/create` - Form input pembayaran
-- `POST /installments` - Proses pembayaran
+- `GET /disposals` - Daftar pelepasan aset
+- `GET /disposals/create` - Form pelepasan aset
+- `POST /disposals` - Proses pelepasan + jurnal otomatis
 
 ### Akuntansi
 - `GET /journals` - Daftar jurnal
@@ -297,117 +305,121 @@ Tabel utama:
 - `GET /trial-balance` - Neraca saldo
 
 ### Laporan
-- `GET /reports/savings` - Laporan simpanan
-- `GET /reports/financings` - Laporan pembiayaan
-- `GET /reports/cash` - Laporan kas
+- `GET /reports/assets` - Daftar/kartu aset
+- `GET /reports/depreciation-schedule` - Jadwal penyusutan
+- `GET /reports/book-value` - Nilai buku per kategori
+- `GET /reports/disposals` - Laba/rugi pelepasan
 - `GET /reports/balance-sheet` - Neraca
-- `GET /reports/profit-loss` - SHU
+- `GET /reports/profit-loss` - Laba rugi
 - `GET /reports/cashflow` - Arus kas
 
 ## 11. Teknologi
 **Backend & Frontend:**
-- Laravel 12
+- Laravel 13
 - Laravel Blade (template engine)
 - TailwindCSS
 - Alpine.js (untuk interaktivitas ringan di browser)
 
 **Database:**
-- MySQL
+- MySQL (development: SQLite)
 
 **Authentication:**
-- Laravel Sanctum
+- Laravel Sanctum / Session
 
 **Export:**
 - Excel
 - PDF
 
-**Catatan:** Aplikasi tidak menggunakan TypeScript dan tidak memerlukan build tool frontend modern. Semua tampian dirender server-side via Blade, dengan sedikit JavaScript native atau Alpine.js untuk elemen interaktif.
+**Catatan:** Aplikasi tidak menggunakan TypeScript dan tidak memerlukan build tool frontend modern. Semua tampilan dirender server-side via Blade, dengan sedikit JavaScript native atau Alpine.js untuk elemen interaktif.
 
 ## 12. Target MVP
 **Sprint 1:**
 - Login
 - Dashboard
-- Master Anggota
+- Master Kategori Aset
+- Master Aset (Register)
 - COA
 
 **Sprint 2:**
-- Simpanan
-- Pembiayaan
+- Perolehan Aset
+- Penyusutan (metode dasar)
 
 **Sprint 3:**
 - Jurnal
 - Buku Besar
 
 **Sprint 4:**
-- Neraca
-- SHU
+- Pelepasan Aset
+- Laporan
 - Studi Kasus
 
 ---
 
 ## Rekomendasi Arsitektur
-Menggunakan pendekatan **Domain-Driven Design (DDD)** ringan agar modul akuntansi tidak tercampur dengan modul pembelajaran.
+Menggunakan pendekatan **Domain-Driven Design (DDD)** ringan agar modul akuntansi aset tidak tercampur dengan modul pembelajaran.
 
 Struktur aplikasi Laravel yang disarankan:
 ```text
 app/
  ├── Http/
  │    ├── Controllers/
- │    │    ├── MemberController.php
+ │    │    ├── AssetController.php
+ │    │    ├── AssetCategoryController.php
+ │    │    ├── DepreciationMethodController.php
  │    │    ├── AccountController.php
- │    │    ├── ContractController.php
- │    │    ├── SavingController.php
- │    │    ├── FinancingController.php
- │    │    ├── InstallmentController.php
+ │    │    ├── AcquisitionController.php
+ │    │    ├── DepreciationController.php
+ │    │    ├── DisposalController.php
  │    │    ├── JournalController.php
  │    │    ├── LedgerController.php
  │    │    └── ReportController.php
  │    └── Requests/ (Form validation)
  ├── Models/
  │    ├── User.php
- │    ├── Member.php
+ │    ├── Asset.php
+ │    ├── AssetCategory.php
+ │    ├── DepreciationMethod.php
+ │    ├── Acquisition.php
+ │    ├── Depreciation.php
+ │    ├── Disposal.php
  │    ├── Account.php
- │    ├── Contract.php
- │    ├── Saving.php
- │    ├── Financing.php
- │    ├── Installment.php
  │    ├── Journal.php
- │    ├── JournalDetail.php
- │    └── StudyCase.php
+ │    └── JournalDetail.php
  ├── Services/
- │    ├── SavingService.php (logic setor/tarik)
- │    ├── FinancingService.php (logic pembiayaan)
+ │    ├── AcquisitionService.php (logic perolehan + jurnal)
+ │    ├── DepreciationService.php (kalkulasi penyusutan per metode)
+ │    ├── DisposalService.php (logic pelepasan + jurnal)
  │    ├── JournalService.php (generate jurnal otomatis)
- │    ├── InstallmentService.php (logic pembayaran)
  │    └── ReportService.php (generate laporan)
  ├── Repositories/ (database queries)
- │    ├── MemberRepository.php
+ │    ├── AssetRepository.php
  │    ├── AccountRepository.php
  │    ├── JournalRepository.php
  │    └── ReportRepository.php
  ├── Events/ (untuk trigger lanjutan)
- │    ├── SavingCreated.php
- │    ├── FinancingCreated.php
- │    └── InstallmentPaid.php
+ │    ├── AssetAcquired.php
+ │    ├── DepreciationPosted.php
+ │    └── AssetDisposed.php
  └── Listeners/ (untuk auto-journal)
-      ├── GenerateJournalOnSaving.php
-      ├── GenerateJournalOnFinancing.php
-      └── GenerateJournalOnInstallment.php
+      ├── GenerateJournalOnAcquisition.php
+      ├── GenerateJournalOnDepreciation.php
+      └── GenerateJournalOnDisposal.php
 
 resources/
  └── views/
       ├── layouts/
       │    ├── app.blade.php (master layout)
       │    └── sidebar.blade.php
-      ├── members/
+      ├── assets/
       │    ├── index.blade.php
       │    ├── create.blade.php
       │    └── edit.blade.php
+      ├── asset_categories/
+      ├── depreciation_methods/
+      ├── acquisitions/
+      ├── depreciations/
+      ├── disposals/
       ├── accounts/
-      ├── contracts/
-      ├── savings/
-      ├── financings/
-      ├── installments/
       ├── journals/
       ├── reports/
       └── dashboard.blade.php
@@ -415,12 +427,12 @@ resources/
 database/
  └── migrations/
       ├── create_users_table.php
-      ├── create_members_table.php
+      ├── create_asset_categories_table.php
+      ├── create_depreciation_methods_table.php
+      ├── create_assets_table.php
+      ├── create_depreciations_table.php
+      ├── create_asset_disposals_table.php
       ├── create_accounts_table.php
-      ├── create_contracts_table.php
-      ├── create_savings_table.php
-      ├── create_financings_table.php
-      ├── create_installments_table.php
       ├── create_journals_table.php
       └── create_journal_details_table.php
 ```
@@ -428,7 +440,27 @@ database/
 **Keuntungan pendekatan ini:**
 - Semua rendering dilakukan di server via Blade
 - Tidak perlu build tool atau TypeScript
-- Database MySQL lebih mudah dikonfigurasi di shared hosting
-- Logic bisnis terpusat di Services layer
+- Logic bisnis terpusat di Services layer (terutama kalkulasi penyusutan)
 - Event-Listener untuk auto-generate jurnal
-- Mudah untuk maintenance dan scaling ke fitur koperasi konvensional atau BMT di masa depan
+- Mudah untuk maintenance dan scaling ke fitur aset tidak berwujud (amortisasi), leasing, atau revaluasi di masa depan
+
+---
+
+## Lampiran A: Migrasi Schema (dari Koperasi Simpan Pinjam Syariah)
+
+Berikut peta migrasi tabel dari aplikasi lama (SP Syariah) ke aplikasi baru (Manajemen Aset):
+
+| Tabel Lama (SP Syariah) | Tabel Baru (Manajemen Aset) | Keterangan |
+|--------------------------|------------------------------|-------------|
+| `members`                | `assets` + `asset_categories` | Register anggota → register aset |
+| `contracts` (akad)       | `depreciation_methods`        | Jenis akad → metode penyusutan |
+| `savings`                | dihapus                       | Digantikan `asset_acquisitions` |
+| `financings`             | dihapus                       | Digantikan `depreciations` |
+| `installments`           | `asset_disposals`             | Angsuran → pelepasan aset |
+| `accounts`               | `accounts` (diperbarui COA)   | COA umum dipertahankan |
+| `journals` / `journal_details` | tetap                        | Jurnal otomatis tetap dipakai |
+
+Perubahan kunci:
+1. `accounts` tetap, tetapi seeder COA disesuaikan ke akun aset tetap (Aset Tetap, Akumulasi Penyusutan, Beban Penyusutan, Laba/Rugi Pelepasan).
+2. Tabel operasional lama (`members`, `contracts`, `savings`, `financings`, `installments`) di-drop dan diganti tabel baru.
+3. `journals` dan `journal_details` dipertahankan untuk pencatatan jurnal otomatis (menggunakan morph relasi `journalable`).

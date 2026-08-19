@@ -5,24 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Member extends Model
+class DepreciationMethod extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'member_number',
+        'code',
         'name',
-        'email',
-        'phone',
-        'address',
-        'joined_date',
-        'status',
+        'formula',
+        'description',
+        'is_active',
     ];
 
     protected function casts(): array
     {
         return [
-            'joined_date' => 'date',
+            'is_active' => 'boolean',
         ];
     }
 }

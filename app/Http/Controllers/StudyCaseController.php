@@ -2,102 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class StudyCaseController extends Controller
 {
     public function index()
     {
-        $studyCases = [
-            [
-                'id' => 1,
-                'code' => 'Case 1',
-                'title' => 'Penyetoran Simpanan Rp 500.000',
-                'description' => 'Simulasi penyetoran simpanan pokok/wajib anggota ke koperasi.',
-                'category' => 'Simpanan',
-                'level' => 'Pemula',
-                'duration' => '10 menit',
-                'progress' => 0,
-                'akad' => 'Wadiah',
-            ],
-            [
-                'id' => 2,
-                'code' => 'Case 2',
-                'title' => 'Simpanan Wajib Bulanan',
-                'description' => 'Anggota melakukan setoran simpanan wajib bulanan.',
-                'category' => 'Simpanan',
-                'level' => 'Pemula',
-                'duration' => '10 menit',
-                'progress' => 0,
-                'akad' => '-',
-            ],
-            [
-                'id' => 3,
-                'code' => 'Case 3',
-                'title' => 'Pembiayaan Murabahah Motor Rp 20.000.000',
-                'description' => 'Anggota membeli motor melalui akad Murabahah dengan margin 15%.',
-                'category' => 'Pembiayaan',
-                'level' => 'Menengah',
-                'duration' => '20 menit',
-                'progress' => 0,
-                'akad' => 'Murabahah',
-            ],
-            [
-                'id' => 4,
-                'code' => 'Case 4',
-                'title' => 'Pembiayaan Murabahah Laptop Rp 8.000.000',
-                'description' => 'Anggota membeli laptop untuk usaha melalui akad Murabahah.',
-                'category' => 'Pembiayaan',
-                'level' => 'Menengah',
-                'duration' => '15 menit',
-                'progress' => 0,
-                'akad' => 'Murabahah',
-            ],
-            [
-                'id' => 5,
-                'code' => 'Case 5',
-                'title' => 'Pembiayaan Mudharabah Warung',
-                'description' => 'Anggota mengajukan modal usaha warung dengan akad Mudharabah bagi hasil.',
-                'category' => 'Pembiayaan',
-                'level' => 'Lanjut',
-                'duration' => '25 menit',
-                'progress' => 0,
-                'akad' => 'Mudharabah',
-            ],
-            [
-                'id' => 6,
-                'code' => 'Case 6',
-                'title' => 'Pembiayaan Musyarakah Usaha Bersama',
-                'description' => 'Kerja sama modal antara anggota dan koperasi dengan akad Musyarakah.',
-                'category' => 'Pembiayaan',
-                'level' => 'Lanjut',
-                'duration' => '30 menit',
-                'progress' => 0,
-                'akad' => 'Musyarakah',
-            ],
-            [
-                'id' => 7,
-                'code' => 'Case 7',
-                'title' => 'Ijarah Sewa Kendaraan',
-                'description' => 'Anggota menyewa kendaraan melalui akad Ijarah selama 12 bulan.',
-                'category' => 'Pembiayaan',
-                'level' => 'Menengah',
-                'duration' => '20 menit',
-                'progress' => 0,
-                'akad' => 'Ijarah',
-            ],
-            [
-                'id' => 8,
-                'code' => 'Case 8',
-                'title' => 'Qardh Hasan Pinjaman Sosial',
-                'description' => 'Pinjaman sosial tanpa margin untuk membantu anggota yang membutuhkan.',
-                'category' => 'Pembiayaan',
-                'level' => 'Pemula',
-                'duration' => '15 menit',
-                'progress' => 0,
-                'akad' => 'Qardh',
-            ],
-        ];
+        $studyCases = $this->getStudyCasesData();
 
         return view('study_cases.index', compact('studyCases'));
     }
@@ -107,7 +16,7 @@ class StudyCaseController extends Controller
         $studyCases = $this->getStudyCasesData();
         $studyCase = collect($studyCases)->firstWhere('id', (int) $id);
 
-        if (!$studyCase) {
+        if (! $studyCase) {
             abort(404, 'Studi kasus tidak ditemukan');
         }
 
@@ -120,35 +29,125 @@ class StudyCaseController extends Controller
             [
                 'id' => 1,
                 'code' => 'Case 1',
-                'title' => 'Penyetoran Simpanan Rp 500.000',
-                'description' => 'Simulasi penyetoran simpanan pokok/wajib anggota ke koperasi.',
-                'category' => 'Simpanan',
+                'title' => 'Perolehan Peralatan Kantor Tunai',
+                'description' => 'Perusahaan membeli peralatan kantor secara tunai.',
+                'category' => 'Perolehan',
                 'level' => 'Pemula',
                 'duration' => '10 menit',
-                'akad' => 'Wadiah',
-                'scenario' => 'Anggota menyetorkan Rp 500.000 sebagai simpanan wadiah ke koperasi syariah.',
+                'scenario' => 'PT Sejahtera membeli peralatan kantor senilai Rp 50.000.000 secara tunai. Biaya instalasi Rp 2.000.000 dibayar tunai. Aset siap digunakan.',
                 'expected_journal' => [
-                    ['account' => 'Kas', 'debit' => 500000, 'credit' => 0],
-                    ['account' => 'Simpanan Wadiah', 'debit' => 0, 'credit' => 500000],
+                    ['account' => 'Peralatan', 'debit' => 52000000, 'credit' => 0],
+                    ['account' => 'Kas', 'debit' => 0, 'credit' => 52000000],
                 ],
-                'explanation' => 'Pada saat setor, saldo kas koperasi bertambah dan saldo simpanan wadiah anggota juga bertambah. Tidak ada imbal hasil langsung karena akad wadiah adalah titipan amanah.',
+                'explanation' => 'Harga perolehan = harga beli + biaya instalasi = Rp 52.000.000. Jurnal mendebit akun Peralatan dan mengkredit Kas.',
+            ],
+            [
+                'id' => 2,
+                'code' => 'Case 2',
+                'title' => 'Perolehan Kendaraan Kredit',
+                'description' => 'Perusahaan membeli kendaraan operasional secara kredit.',
+                'category' => 'Perolehan',
+                'level' => 'Pemula',
+                'duration' => '10 menit',
+                'scenario' => 'PT Sejahtera membeli mobil operasional seharga Rp 250.000.000 secara kredit.',
+                'expected_journal' => [
+                    ['account' => 'Kendaraan', 'debit' => 250000000, 'credit' => 0],
+                    ['account' => 'Utang Usaha', 'debit' => 0, 'credit' => 250000000],
+                ],
+                'explanation' => 'Perolehan secara kredit mengkredit Utang Usaha sebagai pengganti Kas.',
             ],
             [
                 'id' => 3,
                 'code' => 'Case 3',
-                'title' => 'Pembiayaan Murabahah Motor Rp 20.000.000',
-                'description' => 'Anggota membeli motor melalui akad Murabahah dengan margin 15%.',
-                'category' => 'Pembiayaan',
+                'title' => 'Penyusutan Metode Garis Lurus',
+                'description' => 'Menghitung dan mencatat penyusutan dengan metode garis lurus.',
+                'category' => 'Penyusutan',
                 'level' => 'Menengah',
-                'duration' => '20 menit',
-                'akad' => 'Murabahah',
-                'scenario' => 'Anggota mengajukan pembiayaan motor senilai Rp 20.000.000 dengan margin 15% (Rp 3.000.000). Total piutang: Rp 23.000.000, tenor 24 bulan.',
+                'duration' => '15 menit',
+                'scenario' => 'Mesin dibeli Rp 120.000.000, nilai residu Rp 20.000.000, umur manfaat 8 tahun. Hitung penyusutan tahunan.',
                 'expected_journal' => [
-                    ['account' => 'Piutang Murabahah', 'debit' => 23000000, 'credit' => 0],
-                    ['account' => 'Kas', 'debit' => 0, 'credit' => 20000000],
-                    ['account' => 'Pendapatan Margin Murabahah', 'debit' => 0, 'credit' => 3000000],
+                    ['account' => 'Beban Penyusutan', 'debit' => 12500000, 'credit' => 0],
+                    ['account' => 'Akumulasi Penyusutan', 'debit' => 0, 'credit' => 12500000],
                 ],
-                'explanation' => 'Koperasi membeli motor Rp 20.000.000 dari pemasok, kemudian menjual ke anggota Rp 23.000.000 (harga pokok + margin). Piutang murabahah mencatat total yang harus dibayar anggota.',
+                'explanation' => 'Penyusutan = (120.000.000 - 20.000.000) / 8 = Rp 12.500.000 per tahun.',
+            ],
+            [
+                'id' => 4,
+                'code' => 'Case 4',
+                'title' => 'Penyusutan Metode Saldo Menurun',
+                'description' => 'Menghitung penyusutan dengan metode double declining balance.',
+                'category' => 'Penyusutan',
+                'level' => 'Menengah',
+                'duration' => '15 menit',
+                'scenario' => 'Peralatan dibeli Rp 100.000.000, umur manfaat 5 tahun. Gunakan metode saldo menurun (DDB).',
+                'expected_journal' => [
+                    ['account' => 'Beban Penyusutan', 'debit' => 40000000, 'credit' => 0],
+                    ['account' => 'Akumulasi Penyusutan', 'debit' => 0, 'credit' => 40000000],
+                ],
+                'explanation' => 'Tarif DDB = 2 x (1/5) = 40%. Penyusutan tahun 1 = 40% x 100.000.000 = Rp 40.000.000.',
+            ],
+            [
+                'id' => 5,
+                'code' => 'Case 5',
+                'title' => 'Penyusutan Metode Jumlah Angka Tahun',
+                'description' => 'Menghitung penyusutan dengan metode sum of the year digits.',
+                'category' => 'Penyusutan',
+                'level' => 'Lanjut',
+                'duration' => '20 menit',
+                'scenario' => 'Mesin dibeli Rp 90.000.000, nilai residu Rp 10.000.000, umur manfaat 5 tahun.',
+                'expected_journal' => [
+                    ['account' => 'Beban Penyusutan', 'debit' => 26666667, 'credit' => 0],
+                    ['account' => 'Akumulasi Penyusutan', 'debit' => 0, 'credit' => 26666667],
+                ],
+                'explanation' => 'Jumlah angka tahun = 5+4+3+2+1 = 15. Penyusutan tahun 1 = (5/15) x 80.000.000 = Rp 26.666.667.',
+            ],
+            [
+                'id' => 6,
+                'code' => 'Case 6',
+                'title' => 'Penyusutan Metode Unit Produksi',
+                'description' => 'Menghitung penyusutan berdasarkan kapasitas produksi.',
+                'category' => 'Penyusutan',
+                'level' => 'Lanjut',
+                'duration' => '20 menit',
+                'scenario' => 'Mesin dibeli Rp 80.000.000, nilai residu Rp 0, kapasitas total 100.000 unit. Produksi tahun ini 12.000 unit.',
+                'expected_journal' => [
+                    ['account' => 'Beban Penyusutan', 'debit' => 9600000, 'credit' => 0],
+                    ['account' => 'Akumulasi Penyusutan', 'debit' => 0, 'credit' => 9600000],
+                ],
+                'explanation' => 'Penyusutan = 80.000.000 x (12.000/100.000) = Rp 9.600.000.',
+            ],
+            [
+                'id' => 7,
+                'code' => 'Case 7',
+                'title' => 'Penjualan Aset (Laba)',
+                'description' => 'Mencatat pelepasan aset yang dijual dengan laba.',
+                'category' => 'Pelepasan',
+                'level' => 'Lanjut',
+                'duration' => '20 menit',
+                'scenario' => 'Mesin harga perolehan Rp 50.000.000, akumulasi penyusutan Rp 30.000.000 (nilai buku Rp 20.000.000), dijual Rp 25.000.000 tunai.',
+                'expected_journal' => [
+                    ['account' => 'Akumulasi Penyusutan', 'debit' => 30000000, 'credit' => 0],
+                    ['account' => 'Kas', 'debit' => 25000000, 'credit' => 0],
+                    ['account' => 'Mesin', 'debit' => 0, 'credit' => 50000000],
+                    ['account' => 'Laba Pelepasan Aset', 'debit' => 0, 'credit' => 5000000],
+                ],
+                'explanation' => 'Laba pelepasan = harga jual - nilai buku = 25.000.000 - 20.000.000 = Rp 5.000.000.',
+            ],
+            [
+                'id' => 8,
+                'code' => 'Case 8',
+                'title' => 'Penghapusan Aset (Rugi)',
+                'description' => 'Mencatat penghapusan aset yang rusak total.',
+                'category' => 'Pelepasan',
+                'level' => 'Menengah',
+                'duration' => '15 menit',
+                'scenario' => 'Peralatan harga perolehan Rp 20.000.000, akumulasi penyusutan Rp 15.000.000 (nilai buku Rp 5.000.000), rusak total dan dihapus.',
+                'expected_journal' => [
+                    ['account' => 'Akumulasi Penyusutan', 'debit' => 15000000, 'credit' => 0],
+                    ['account' => 'Rugi Pelepasan Aset', 'debit' => 5000000, 'credit' => 0],
+                    ['account' => 'Peralatan', 'debit' => 0, 'credit' => 20000000],
+                ],
+                'explanation' => 'Nilai buku yang tersisa Rp 5.000.000 menjadi beban Rugi Pelepasan Aset.',
             ],
         ];
     }

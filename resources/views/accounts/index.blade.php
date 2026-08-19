@@ -145,7 +145,7 @@
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-slate-700 mb-1.5">Nama Akun <span class="text-danger">*</span></label>
-                        <input type="text" name="name" placeholder="Kas Koperasi" required class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
+                        <input type="text" name="name" placeholder="Kas Perusahaan" required class="w-full px-4 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary">
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>

@@ -23,8 +23,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             AccountSeeder::class,
-            ContractSeeder::class,
-            MemberSeeder::class,
+            DepreciationMethodSeeder::class,
+            AssetCategorySeeder::class,
+            AssetSeeder::class,
         ]);
     }
 }

@@ -75,14 +75,10 @@
         <div class="space-y-6">
             <div class="bg-white rounded-2xl shadow-soft border border-slate-100 p-6">
                 <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
-                    <i data-lucide="scroll-text" class="w-5 h-5 text-primary"></i>
-                    Detail Akad
+                    <i data-lucide="clipboard-list" class="w-5 h-5 text-primary"></i>
+                    Detail Kasus
                 </h3>
                 <div class="space-y-3">
-                    <div class="flex justify-between text-sm">
-                        <span class="text-slate-500">Jenis Akad</span>
-                        <span class="font-medium text-slate-800">{{ $studyCase['akad'] }}</span>
-                    </div>
                     <div class="flex justify-between text-sm">
                         <span class="text-slate-500">Kategori</span>
                         <span class="font-medium text-slate-800">{{ $studyCase['category'] }}</span>
@@ -106,10 +102,10 @@
                 <h3 class="font-bold text-slate-800 mb-4">Latihan Praktik</h3>
                 <p class="text-sm text-slate-500 mb-4">Kerjakan studi kasus ini dengan menginput transaksi di sistem.</p>
                 <button type="button" class="w-full block text-center bg-primary text-white py-2.5 rounded-xl text-sm font-semibold hover:bg-primary-dark transition-colors shadow-sm mb-2">
-                    Input Simpanan
+                    Input Perolehan Aset
                 </button>
                 <button type="button" class="w-full block text-center border border-primary text-primary py-2.5 rounded-xl text-sm font-semibold hover:bg-primary-light transition-colors">
-                    Input Pembiayaan
+                    Input Penyusutan
                 </button>
             </div>
         </div>

@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Materi - Perbedaan Simpan Pinjam Konvensional dan Syariah')
+@section('title', 'Materi - Pengertian & Karakteristik Aset Tetap')
 @section('page-title', 'Materi Pembelajaran')
 @section('breadcrumb')
     <a href="{{ route('dashboard') }}" class="hover:text-primary">Home</a>
     <span>/</span>
     <a href="{{ route('materials.index') }}" class="hover:text-primary">Materi</a>
     <span>/</span>
-    <span class="text-slate-700">Perbedaan Simpan Pinjam Konvensional dan Syariah</span>
+    <span class="text-slate-700">Pengertian & Karakteristik Aset Tetap</span>
 @endsection
 
 @section('content')
@@ -19,7 +19,7 @@
                     <i data-lucide="clock" class="w-4 h-4"></i> 45 menit
                 </span>
             </div>
-            <h1 class="text-3xl font-bold text-slate-800">Perbedaan Simpan Pinjam Konvensional dan Syariah</h1>
+            <h1 class="text-3xl font-bold text-slate-800">Pengertian & Karakteristik Aset Tetap</h1>
         </div>
         <a href="{{ route('materials.index') }}" class="px-4 py-2 border border-slate-200 text-slate-600 rounded-xl hover:bg-slate-50 text-sm font-medium">
             Kembali
