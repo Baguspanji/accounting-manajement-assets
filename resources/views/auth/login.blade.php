@@ -39,9 +39,20 @@
 
                 <form action="{{ route('login') }}" method="POST" class="space-y-5">
                     @csrf
+
+                    @if ($errors->any())
+                        <div class="p-3.5 border border-danger bg-danger-light rounded-xl flex items-start gap-3">
+                            <i data-lucide="alert-circle" class="w-5 h-5 shrink-0 mt-0.5 text-danger"></i>
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">Login gagal.</p>
+                                <p class="text-sm text-text-secondary">{{ $errors->first() }}</p>
+                            </div>
+                        </div>
+                    @endif
+
                     <div>
                         <x-forms.label for="email" required>Email / Username</x-forms.label>
-                        <x-forms.input type="email" name="email" icon="mail" placeholder="admin@akuntansiaset.com" required />
+                        <x-forms.input type="email" name="email" icon="mail" placeholder="admin@admin.com" required />
                     </div>
 
                     <div>

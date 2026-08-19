@@ -12,21 +12,55 @@
     </div>
 
     <div class="flex items-center space-x-4">
-        <!-- <div class="hidden md:flex items-center bg-slate-100 rounded-xl px-3 py-2 w-64">
-            <i data-lucide="search" class="w-4 h-4 text-text-secondary mr-2"></i>
-            <input type="text" placeholder="Cari data aset, akun..." class="bg-transparent text-sm outline-none w-full">
-        </div>
-        <button class="relative p-2 rounded-xl hover:bg-slate-100">
-            <i data-lucide="bell" class="w-5 h-5 text-slate-600"></i>
-            <span class="absolute top-1 right-1 w-2 h-2 bg-danger rounded-full"></span>
-        </button> -->
-        <div class="flex items-center space-x-2 cursor-pointer hover:bg-slate-100 p-1 rounded-xl">
-            <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name ?? 'Admin') }}&background=2563eb&color=fff" alt="User" class="w-8 h-8 rounded-lg">
-            <div class="hidden md:block">
-                <p class="text-sm font-medium">{{ auth()->user()->name ?? 'Admin User' }}</p>
-                <p class="text-xs text-text-secondary">Administrator</p>
+        <div class="relative">
+            <button id="user-menu-button" type="button" onclick="toggleUserMenu()"
+                class="flex items-center space-x-2 cursor-pointer hover:bg-slate-100 p-1 rounded-xl transition-colors" aria-haspopup="menu" aria-expanded="false">
+                <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name ?? 'Admin') }}&background=2563eb&color=fff" alt="User" class="w-8 h-8 rounded-lg">
+                <div class="hidden md:block text-left">
+                    <p class="text-sm font-medium">{{ auth()->user()->name ?? 'Admin User' }}</p>
+                    <p class="text-xs text-text-secondary">Administrator</p>
+                </div>
+                <i data-lucide="chevron-down" class="w-4 h-4 text-text-secondary hidden md:block"></i>
+            </button>
+
+            <div id="user-menu" role="menu"
+                class="hidden absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-lg border border-slate-100 py-2 z-50">
+                <div class="px-4 py-2 border-b border-slate-100 md:hidden">
+                    <p class="text-sm font-medium text-text-primary">{{ auth()->user()->name ?? 'Admin User' }}</p>
+                    <p class="text-xs text-text-secondary">{{ auth()->user()->email }}</p>
+                </div>
+                <a href="{{ route('profile.show') }}" role="menuitem"
+                    class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 transition-colors">
+                    <i data-lucide="user" class="w-4 h-4"></i> Profil
+                </a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" role="menuitem"
+                        class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-danger hover:bg-danger-light transition-colors text-left">
+                        <i data-lucide="log-out" class="w-4 h-4"></i> Keluar
+                    </button>
+                </form>
             </div>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-text-secondary hidden md:block"></i>
         </div>
     </div>
 </header>
+
+<script>
+    function toggleUserMenu() {
+        const menu = document.getElementById('user-menu');
+        const button = document.getElementById('user-menu-button');
+        const isHidden = menu.classList.contains('hidden');
+        menu.classList.toggle('hidden', !isHidden);
+        button.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+    }
+
+    document.addEventListener('click', function (event) {
+        const menu = document.getElementById('user-menu');
+        if (!menu) return;
+        const isInside = menu.contains(event.target) || document.getElementById('user-menu-button').contains(event.target);
+        if (!isInside) {
+            menu.classList.add('hidden');
+            document.getElementById('user-menu-button').setAttribute('aria-expanded', 'false');
+        }
+    });
+</script>

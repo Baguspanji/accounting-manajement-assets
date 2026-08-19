@@ -10,6 +10,7 @@ use App\Models\DepreciationMethod;
 use App\Models\Journal;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class AccountingModuleTest extends TestCase
@@ -198,5 +199,39 @@ class AccountingModuleTest extends TestCase
             ->assertOk()
             ->assertSee('Akumulasi Penyusutan')
             ->assertSee('Beban Penyusutan');
+    }
+
+    public function test_profile_page_and_logout(): void
+    {
+        $this->actingAs($this->user)->get(route('profile.show'))
+            ->assertOk()
+            ->assertSee('Ganti Kata Sandi');
+
+        $this->actingAs($this->user)->post(route('logout'))
+            ->assertRedirect(route('login'));
+
+        $this->assertGuest();
+    }
+
+    public function test_change_password_updates_credentials(): void
+    {
+        $this->actingAs($this->user)
+            ->put(route('profile.password'), [
+                'current_password' => 'password',
+                'password' => 'new-password',
+                'password_confirmation' => 'new-password',
+            ])
+            ->assertRedirect()
+            ->assertSessionHas('success');
+
+        $this->assertTrue(Hash::check('new-password', $this->user->fresh()->password));
+
+        $this->actingAs($this->user)
+            ->put(route('profile.password'), [
+                'current_password' => 'password',
+                'password' => 'other-password',
+                'password_confirmation' => 'other-password',
+            ])
+            ->assertSessionHasErrors('current_password');
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AcquisitionController;
 use App\Http\Controllers\AssetCategoryController;
 use App\Http\Controllers\AssetController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepreciationController;
 use App\Http\Controllers\DepreciationMethodController;
@@ -11,36 +12,21 @@ use App\Http\Controllers\DisposalController;
 use App\Http\Controllers\DocumentationController;
 use App\Http\Controllers\GeneralLedgerController;
 use App\Http\Controllers\JournalController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TrialBalanceController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return redirect()->route('dashboard');
 });
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-
-Route::post('/login', function (Request $request) {
-    $credentials = $request->validate([
-        'email' => ['required', 'email'],
-        'password' => ['required'],
-    ]);
-
-    if (Auth::attempt($credentials, $request->boolean('remember'))) {
-        $request->session()->regenerate();
-
-        return redirect()->intended('dashboard');
-    }
-
-    return back()->withErrors([
-        'email' => 'The provided credentials do not match our records.',
-    ]);
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
 });
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -71,4 +57,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('documentation', [DocumentationController::class, 'index'])->name('documentation.index');
     Route::get('documentation/{id}', [DocumentationController::class, 'show'])->name('documentation.show');
+
+    Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::put('profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
 });

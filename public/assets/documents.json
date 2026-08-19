@@ -34,7 +34,9 @@
                     "Catat data aset beserta harga perolehan, nilai residu, dan umur manfaat.",
                     "Lakukan pencatatan penyusutan secara berkala.",
                     "Catat pelepasan aset jika aset dijual, dihapus, atau ditukar.",
-                    "Pantau ringkasan aset melalui halaman Dashboard."
+                    "Pantau ringkasan aset melalui halaman Dashboard.",
+                    "Ubah kata sandi melalui menu Profil setelah login pertama.",
+                    "Keluar dari aplikasi melalui menu pengguna di kanan atas (Keluar)."
                 ]
             },
             {
@@ -580,6 +582,67 @@
             {
                 "type": "callout",
                 "text": "Gunakan ringkasan dashboard untuk memantau kesehatan aset secara berkala dan mempersiapkan keputusan peremajaan atau pelepasan aset."
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "slug": "menu-pengguna",
+        "title": "Menu Pengguna (Profil & Keluar)",
+        "description": "Menggunakan menu pengguna di kanan atas untuk mengelola profil dan keluar dari aplikasi.",
+        "category": "Pemakaian",
+        "updated_at": "Terbaru",
+        "icon": "user",
+        "content": [
+            {
+                "type": "heading",
+                "text": "Menu Pengguna"
+            },
+            {
+                "type": "paragraph",
+                "text": "Pada bagian kanan atas halaman terdapat menu pengguna yang menampilkan nama akun yang sedang masuk. Klik area tersebut untuk membuka menu dengan dua pilihan: Profil dan Keluar."
+            },
+            {
+                "type": "heading",
+                "text": "Mengakses Profil"
+            },
+            {
+                "type": "paragraph",
+                "text": "Pilihan Profil membuka halaman akun yang menampilkan informasi akun seperti nama lengkap, alamat email, dan peran. Dari halaman ini Anda dapat mengganti kata sandi akun."
+            },
+            {
+                "type": "heading",
+                "text": "Mengganti Kata Sandi"
+            },
+            {
+                "type": "list",
+                "items": [
+                    "Buka menu pengguna di kanan atas, lalu pilih Profil.",
+                    "Isi kata sandi saat ini pada kolom Kata Sandi Saat Ini.",
+                    "Masukkan kata sandi baru dan konfirmasinya.",
+                    "Klik tombol Perbarui Kata Sandi.",
+                    "Gunakan kata sandi baru pada login berikutnya."
+                ]
+            },
+            {
+                "type": "callout",
+                "text": "Segera ganti kata sandi akun administrator setelah login pertama untuk keamanan, kemudian lakukan penggantian secara berkala."
+            },
+            {
+                "type": "heading",
+                "text": "Keluar dari Aplikasi"
+            },
+            {
+                "type": "list",
+                "items": [
+                    "Buka menu pengguna di kanan atas.",
+                    "Klik Keluar.",
+                    "Sistem akan mengakhiri sesi dan mengembalikan Anda ke halaman login."
+                ]
+            },
+            {
+                "type": "callout",
+                "text": "Selalu gunakan tombol Keluar untuk mengakhiri sesi, terutama saat menggunakan perangkat bersama, agar akun tidak disalahgunakan."
             }
         ]
     }
