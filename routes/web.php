@@ -9,6 +9,10 @@ use App\Http\Controllers\DepreciationController;
 use App\Http\Controllers\DepreciationMethodController;
 use App\Http\Controllers\DisposalController;
 use App\Http\Controllers\DocumentationController;
+use App\Http\Controllers\GeneralLedgerController;
+use App\Http\Controllers\JournalController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\TrialBalanceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -50,6 +54,20 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('depreciations/run', [DepreciationController::class, 'run'])->name('depreciations.run');
     Route::post('depreciations/post', [DepreciationController::class, 'post'])->name('depreciations.post');
     Route::resource('disposals', DisposalController::class)->only(['index', 'create', 'store', 'show']);
+
+    Route::resource('journals', JournalController::class)->only(['index', 'show']);
+    Route::get('ledger', [GeneralLedgerController::class, 'index'])->name('ledger.index');
+    Route::get('ledger/{account}', [GeneralLedgerController::class, 'show'])->name('ledger.show');
+    Route::get('trial-balance', [TrialBalanceController::class, 'index'])->name('trial-balance.index');
+
+    Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
+    Route::get('reports/neraca', [ReportController::class, 'neraca'])->name('reports.neraca');
+    Route::get('reports/laba-rugi', [ReportController::class, 'labaRugi'])->name('reports.laba-rugi');
+    Route::get('reports/nilai-buku-kategori', [ReportController::class, 'kategori'])->name('reports.kategori');
+    Route::get('reports/kartu-aset', [ReportController::class, 'kartuAset'])->name('reports.kartu-aset');
+    Route::get('reports/jadwal-penyusutan', [ReportController::class, 'jadwalPenyusutan'])->name('reports.jadwal-penyusutan');
+    Route::get('reports/pelepasan', [ReportController::class, 'pelepasan'])->name('reports.pelepasan');
+    Route::get('reports/arus-kas', [ReportController::class, 'arusKas'])->name('reports.arus-kas');
 
     Route::get('documentation', [DocumentationController::class, 'index'])->name('documentation.index');
     Route::get('documentation/{id}', [DocumentationController::class, 'show'])->name('documentation.show');

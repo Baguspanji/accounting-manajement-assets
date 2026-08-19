@@ -337,14 +337,15 @@ Tabel utama:
 **Sprint 2:**
 - [x] Perolehan Aset
 - [x] Penyusutan (metode dasar)
-- [ ] Jurnal (list jurnal global)
+- [x] Jurnal (list jurnal global + detail)
 
 **Sprint 3:**
-- [ ] Buku Besar
+- [x] Buku Besar
+- [x] Neraca Saldo
 
 **Sprint 4:**
 - [x] Pelepasan Aset
-- [ ] Laporan
+- [x] Laporan (Neraca, Laba Rugi, Nilai Buku per Kategori, Kartu Aset, Jadwal Penyusutan, Pelepasan Aset, Arus Kas)
 
 ---
 

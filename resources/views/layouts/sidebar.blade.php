@@ -49,17 +49,47 @@
         </a>
 
         <p class="px-3 text-xs font-semibold text-slate-400 uppercase mt-4 mb-1">Akuntansi</p>
-        <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors">
+        <a href="{{ route('journals.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('journals.*') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
             <i data-lucide="book-open" class="w-5 h-5"></i>
             <span class="text-sm">Jurnal</span>
         </a>
-        <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors">
+        <a href="{{ route('ledger.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('ledger.*') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
             <i data-lucide="gantt-chart-square" class="w-5 h-5"></i>
             <span class="text-sm">Buku Besar</span>
         </a>
-        <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors">
+        <a href="{{ route('trial-balance.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('trial-balance.*') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
             <i data-lucide="scale" class="w-5 h-5"></i>
             <span class="text-sm">Neraca Saldo</span>
+        </a>
+
+        <p class="px-3 text-xs font-semibold text-slate-400 uppercase mt-4 mb-1">Laporan</p>
+        <a href="{{ route('reports.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('reports.index') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
+            <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+            <span class="text-sm">Semua Laporan</span>
+        </a>
+        <a href="{{ route('reports.neraca') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('reports.neraca') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
+            <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+            <span class="text-sm">Neraca</span>
+        </a>
+        <a href="{{ route('reports.laba-rugi') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('reports.laba-rugi') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
+            <i data-lucide="trending-up" class="w-5 h-5"></i>
+            <span class="text-sm">Laba Rugi</span>
+        </a>
+        <a href="{{ route('reports.kategori') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('reports.kategori') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
+            <i data-lucide="folder" class="w-5 h-5"></i>
+            <span class="text-sm">Nilai Buku per Kategori</span>
+        </a>
+        <a href="{{ route('reports.jadwal-penyusutan') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('reports.jadwal-penyusutan') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
+            <i data-lucide="calendar" class="w-5 h-5"></i>
+            <span class="text-sm">Jadwal Penyusutan</span>
+        </a>
+        <a href="{{ route('reports.pelepasan') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('reports.pelepasan') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
+            <i data-lucide="package-minus" class="w-5 h-5"></i>
+            <span class="text-sm">Pelepasan Aset</span>
+        </a>
+        <a href="{{ route('reports.arus-kas') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('reports.arus-kas') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
+            <i data-lucide="wallet" class="w-5 h-5"></i>
+            <span class="text-sm">Arus Kas</span>
         </a>
 
         <p class="px-3 text-xs font-semibold text-slate-400 uppercase mt-4 mb-1">Dokumentasi</p>

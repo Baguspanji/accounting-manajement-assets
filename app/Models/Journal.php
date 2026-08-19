@@ -28,6 +28,25 @@ class Journal extends Model
         return $this->morphTo();
     }
 
+    public function relatedLabel(): ?string
+    {
+        $related = $this->journalable;
+
+        if ($related instanceof Asset) {
+            return 'Aset: '.$related->name;
+        }
+
+        if ($related instanceof Depreciation) {
+            return 'Penyusutan: '.($related->asset?->name ?? '-');
+        }
+
+        if ($related instanceof AssetDisposal) {
+            return 'Pelepasan: '.($related->asset?->name ?? '-');
+        }
+
+        return $related ? class_basename($related) : null;
+    }
+
     public function details(): HasMany
     {
         return $this->hasMany(JournalDetail::class);
