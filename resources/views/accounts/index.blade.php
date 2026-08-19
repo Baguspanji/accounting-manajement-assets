@@ -11,8 +11,8 @@
 @section('content')
     <div class="flex flex-col md:flex-row justify-between md:items-center mb-6 gap-4">
         <div>
-            <h2 class="text-xl font-bold text-slate-800">Daftar Akun</h2>
-            <p class="text-slate-500 text-sm">Kelola chart of account (COA) untuk akuntansi.</p>
+            <h2 class="text-xl font-bold text-text-primary">Daftar Akun</h2>
+            <p class="text-text-secondary text-sm">Kelola chart of account (COA) untuk akuntansi.</p>
         </div>
         <button onclick="openModal('create-modal')" class="bg-primary text-white px-4 py-2.5 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-primary-dark transition-colors shadow-sm">
             <i data-lucide="plus" class="w-5 h-5"></i>
@@ -23,14 +23,14 @@
     @if ($message = Session::get('success'))
         <div class="mb-6 p-4 bg-primary-light border border-primary rounded-xl flex items-start gap-3">
             <i data-lucide="check-circle" class="w-5 h-5 text-primary flex-shrink-0 mt-0.5"></i>
-            <p class="font-medium text-slate-800">{{ $message }}</p>
+            <p class="font-medium text-text-primary">{{ $message }}</p>
         </div>
     @endif
 
     <div class="bg-white rounded-2xl shadow-soft border border-slate-100 overflow-hidden">
         <div class="p-4 border-b border-slate-100 flex flex-col md:flex-row gap-3 md:items-center justify-between">
             <div class="relative w-full md:w-64">
-                <i data-lucide="search" class="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2"></i>
+                <i data-lucide="search" class="w-4 h-4 text-text-secondary absolute left-3 top-1/2 -translate-y-1/2"></i>
                 <input type="text" placeholder="Cari kode / nama akun..." class="w-full pl-10 pr-4 py-2 text-sm border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/30">
             </div>
         </div>
@@ -39,20 +39,20 @@
             <table class="w-full text-left">
                 <thead class="bg-slate-50 border-b border-slate-100 sticky top-0">
                     <tr>
-                        <th class="py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Kode</th>
-                        <th class="py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Nama Akun</th>
-                        <th class="py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Kategori</th>
-                        <th class="py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Saldo Normal</th>
-                        <th class="py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Induk</th>
-                        <th class="py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
-                        <th class="py-3 px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider text-right">Aksi</th>
+                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider">Kode</th>
+                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider">Nama Akun</th>
+                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider">Kategori</th>
+                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider">Saldo Normal</th>
+                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider">Induk</th>
+                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider">Status</th>
+                        <th class="py-3 px-4 text-xs font-semibold text-text-secondary uppercase tracking-wider text-right">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
                     @forelse ($accounts as $account)
                         <tr class="hover:bg-slate-50 transition-colors">
                             <td class="py-3 px-4 text-sm font-medium text-slate-700 font-mono">{{ $account->code }}</td>
-                            <td class="py-3 px-4 text-sm text-slate-800">
+                            <td class="py-3 px-4 text-sm text-text-primary">
                                 <div class="flex items-center gap-2">
                                     @if($account->parent_id)
                                         <span class="w-1 border-l-2 border-slate-300 h-4"></span>
@@ -85,13 +85,13 @@
                             </td>
                             <td class="py-3 px-4 text-right">
                                 <div class="flex items-center justify-end gap-1">
-                                    <button onclick="openEditModal({{ $account->id }}, '{{ $account->code }}', '{{ $account->name }}', '{{ $account->category }}', '{{ $account->normal_balance }}', {{ $account->parent_id ?? 'null' }}, {{ $account->is_active ? 'true' : 'false' }})" class="p-1.5 hover:bg-warning-light rounded-lg text-slate-500 hover:text-warning">
+                                    <button onclick="openEditModal({{ $account->id }}, '{{ $account->code }}', '{{ $account->name }}', '{{ $account->category }}', '{{ $account->normal_balance }}', {{ $account->parent_id ?? 'null' }}, {{ $account->is_active ? 'true' : 'false' }})" class="p-1.5 hover:bg-warning-light rounded-lg text-text-secondary hover:text-warning">
                                         <i data-lucide="edit" class="w-4 h-4"></i>
                                     </button>
                                     <form action="{{ route('accounts.destroy', $account->id) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin menghapus?')">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="p-1.5 hover:bg-danger-light rounded-lg text-slate-500 hover:text-danger">
+                                        <button type="submit" class="p-1.5 hover:bg-danger-light rounded-lg text-text-secondary hover:text-danger">
                                             <i data-lucide="trash-2" class="w-4 h-4"></i>
                                         </button>
                                     </form>
@@ -100,7 +100,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7" class="py-8 px-4 text-center text-slate-500">Belum ada data akun.</td>
+                            <td colspan="7" class="py-8 px-4 text-center text-text-secondary">Belum ada data akun.</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -116,10 +116,10 @@
         <div class="bg-white rounded-2xl shadow-xl w-full max-w-xl max-h-[90vh] flex flex-col">
             <div class="flex items-center justify-between p-5 border-b border-slate-100">
                 <div>
-                    <h3 class="text-lg font-bold text-slate-800">Tambah Akun Baru</h3>
-                    <p class="text-sm text-slate-500">Lengkapi data akun.</p>
+                    <h3 class="text-lg font-bold text-text-primary">Tambah Akun Baru</h3>
+                    <p class="text-sm text-text-secondary">Lengkapi data akun.</p>
                 </div>
-                <button onclick="closeModal('create-modal')" class="p-2 hover:bg-slate-100 rounded-lg text-slate-500">
+                <button onclick="closeModal('create-modal')" class="p-2 hover:bg-slate-100 rounded-lg text-text-secondary">
                     <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
             </div>
@@ -187,10 +187,10 @@
         <div class="bg-white rounded-2xl shadow-xl w-full max-w-xl max-h-[90vh] flex flex-col">
             <div class="flex items-center justify-between p-5 border-b border-slate-100">
                 <div>
-                    <h3 class="text-lg font-bold text-slate-800">Edit Akun</h3>
-                    <p class="text-sm text-slate-500">Perbarui data akun.</p>
+                    <h3 class="text-lg font-bold text-text-primary">Edit Akun</h3>
+                    <p class="text-sm text-text-secondary">Perbarui data akun.</p>
                 </div>
-                <button onclick="closeModal('edit-modal')" class="p-2 hover:bg-slate-100 rounded-lg text-slate-500">
+                <button onclick="closeModal('edit-modal')" class="p-2 hover:bg-slate-100 rounded-lg text-text-secondary">
                     <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
             </div>

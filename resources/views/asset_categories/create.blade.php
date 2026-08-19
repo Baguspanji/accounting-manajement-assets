@@ -12,8 +12,8 @@
 
 @section('content')
     <div class="mb-6">
-        <h2 class="text-xl font-bold text-slate-800">Tambah Kategori Aset Baru</h2>
-        <p class="text-slate-500 text-sm">Lengkapi data kategori aset tetap.</p>
+        <h2 class="text-xl font-bold text-text-primary">Tambah Kategori Aset Baru</h2>
+        <p class="text-text-secondary text-sm">Lengkapi data kategori aset tetap.</p>
     </div>
 
     <div class="bg-white rounded-2xl shadow-soft border border-slate-100">

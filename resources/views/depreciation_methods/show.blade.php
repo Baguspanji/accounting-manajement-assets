@@ -13,8 +13,8 @@
 @section('content')
     <div class="mb-6 flex justify-between items-center">
         <div>
-            <h2 class="text-xl font-bold text-slate-800">Detail Metode Penyusutan</h2>
-            <p class="text-slate-500 text-sm">Informasi lengkap metode penyusutan.</p>
+            <h2 class="text-xl font-bold text-text-primary">Detail Metode Penyusutan</h2>
+            <p class="text-text-secondary text-sm">Informasi lengkap metode penyusutan.</p>
         </div>
         <a href="{{ route('depreciation-methods.index') }}" class="px-4 py-2 border border-slate-200 text-slate-600 rounded-xl hover:bg-slate-50 text-sm font-medium">
             Kembali
@@ -27,23 +27,23 @@
                 <i data-lucide="calculator" class="w-6 h-6 text-primary"></i>
             </div>
             <div>
-                <h3 class="text-lg font-bold text-slate-800">{{ $depreciationMethod->name }}</h3>
-                <p class="text-sm text-slate-500 font-mono">{{ $depreciationMethod->code }}</p>
+                <h3 class="text-lg font-bold text-text-primary">{{ $depreciationMethod->name }}</h3>
+                <p class="text-sm text-text-secondary font-mono">{{ $depreciationMethod->code }}</p>
             </div>
         </div>
         <div class="p-0">
             <table class="w-full text-sm text-left">
                 <tbody class="divide-y divide-slate-100">
                     <tr class="hover:bg-slate-50">
-                        <th class="w-1/3 py-4 px-5 font-medium text-slate-500">Formula</th>
-                        <td class="py-4 px-5 text-slate-800">{{ $depreciationMethod->formula ?? '-' }}</td>
+                        <th class="w-1/3 py-4 px-5 font-medium text-text-secondary">Formula</th>
+                        <td class="py-4 px-5 text-text-primary">{{ $depreciationMethod->formula ?? '-' }}</td>
                     </tr>
                     <tr class="hover:bg-slate-50">
-                        <th class="py-4 px-5 font-medium text-slate-500">Deskripsi</th>
-                        <td class="py-4 px-5 text-slate-800">{{ $depreciationMethod->description ?? '-' }}</td>
+                        <th class="py-4 px-5 font-medium text-text-secondary">Deskripsi</th>
+                        <td class="py-4 px-5 text-text-primary">{{ $depreciationMethod->description ?? '-' }}</td>
                     </tr>
                     <tr class="hover:bg-slate-50">
-                        <th class="py-4 px-5 font-medium text-slate-500">Status</th>
+                        <th class="py-4 px-5 font-medium text-text-secondary">Status</th>
                         <td class="py-4 px-5">
                             <span class="px-2.5 py-1 inline-flex text-xs font-semibold rounded-full {{ $depreciationMethod->is_active ? 'bg-primary-light text-primary' : 'bg-slate-100 text-slate-600' }}">
                                 {{ $depreciationMethod->is_active ? 'Aktif' : 'Non-Aktif' }}

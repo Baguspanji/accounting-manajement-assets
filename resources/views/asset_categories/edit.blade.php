@@ -12,8 +12,8 @@
 
 @section('content')
     <div class="mb-6">
-        <h2 class="text-xl font-bold text-slate-800">Edit Kategori Aset</h2>
-        <p class="text-slate-500 text-sm">Perbarui data kategori aset.</p>
+        <h2 class="text-xl font-bold text-text-primary">Edit Kategori Aset</h2>
+        <p class="text-text-secondary text-sm">Perbarui data kategori aset.</p>
     </div>
 
     <div class="bg-white rounded-2xl shadow-soft border border-slate-100">

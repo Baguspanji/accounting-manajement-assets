@@ -1,0 +1,586 @@
+[
+    {
+        "id": 1,
+        "slug": "mulai-cepat",
+        "title": "Mulai Cepat",
+        "description": "Alur kerja utama penggunaan aplikasi dari login hingga pelaporan.",
+        "category": "Pemakaian",
+        "updated_at": "Terbaru",
+        "icon": "rocket",
+        "content": [
+            {
+                "type": "heading",
+                "text": "Tentang Aplikasi"
+            },
+            {
+                "type": "paragraph",
+                "text": "Aplikasi Akuntansi Manajemen Aset digunakan untuk mencatat, mengelola, dan melaporkan aset tetap milik perusahaan. Modul utama mencakup master data akun (COA), kategori aset, metode penyusutan, data aset, serta pencatatan transaksi perolehan, penyusutan, dan pelepasan aset."
+            },
+            {
+                "type": "paragraph",
+                "text": "Aplikasi hanya memiliki satu peran pengguna, yaitu Administrator. Administrator memiliki akses penuh ke seluruh menu."
+            },
+            {
+                "type": "heading",
+                "text": "Alur Kerja Utama"
+            },
+            {
+                "type": "list",
+                "items": [
+                    "Login menggunakan akun administrator.",
+                    "Siapkan Chart of Account sesuai kebutuhan perusahaan.",
+                    "Buat kategori aset dan hubungkan dengan akun aset, akun beban penyusutan, serta akun akumulasi penyusutan.",
+                    "Tentukan metode penyusutan yang digunakan.",
+                    "Catat data aset beserta harga perolehan, nilai residu, dan umur manfaat.",
+                    "Lakukan pencatatan penyusutan secara berkala.",
+                    "Catat pelepasan aset jika aset dijual, dihapus, atau ditukar.",
+                    "Pantau ringkasan aset melalui halaman Dashboard."
+                ]
+            },
+            {
+                "type": "callout",
+                "text": "Seluruh menu dapat diakses melalui sidebar di sisi kiri aplikasi. Menu yang belum memiliki modul transaksi ditandai sebagai menu perencanaan dan akan aktif pada rilis berikutnya."
+            },
+            {
+                "type": "heading",
+                "text": "Akun Login Awal"
+            },
+            {
+                "type": "table",
+                "headers": [
+                    "Peran",
+                    "Email",
+                    "Password"
+                ],
+                "rows": [
+                    [
+                        "Administrator",
+                        "admin@admin.com",
+                        "password"
+                    ]
+                ]
+            },
+            {
+                "type": "paragraph",
+                "text": "Segera ganti kata sandi akun administrator setelah login pertama untuk keamanan."
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "slug": "chart-of-account",
+        "title": "Mengelola Chart of Account",
+        "description": "Cara menyiapkan daftar akun (COA) sebagai dasar pencatatan transaksi.",
+        "category": "Referensi",
+        "updated_at": "Terbaru",
+        "icon": "list",
+        "content": [
+            {
+                "type": "heading",
+                "text": "Apa itu Chart of Account (COA)?"
+            },
+            {
+                "type": "paragraph",
+                "text": "Chart of Account adalah daftar lengkap akun yang digunakan perusahaan untuk mencatat transaksi. Struktur COA pada aplikasi ini dikelompokkan ke dalam lima kategori: Aset, Liabilitas, Ekuitas, Pendapatan, dan Beban."
+            },
+            {
+                "type": "heading",
+                "text": "Menambahkan Akun"
+            },
+            {
+                "type": "list",
+                "items": [
+                    "Buka menu Chart of Account di sidebar.",
+                    "Klik tombol Tambah Akun.",
+                    "Isi Kode Akun dengan format angka, contoh 1110 untuk Kas.",
+                    "Pilih Kategori akun (Aset, Liabilitas, Ekuitas, Pendapatan, atau Beban).",
+                    "Isi Nama Akun, misalnya Kas Perusahaan.",
+                    "Tentukan Saldo Normal: Debit untuk akun aset dan beban, Kredit untuk liabilitas, ekuitas, dan pendapatan.",
+                    "Pilih Akun Induk jika akun merupakan sub-akun dari akun kelompok.",
+                    "Aktifkan status agar akun dapat digunakan dalam transaksi, lalu klik Simpan."
+                ]
+            },
+            {
+                "type": "heading",
+                "text": "Struktur Akun yang Disarankan"
+            },
+            {
+                "type": "table",
+                "headers": [
+                    "Kode",
+                    "Nama Akun",
+                    "Kategori",
+                    "Saldo Normal"
+                ],
+                "rows": [
+                    [
+                        "1110",
+                        "Kas",
+                        "Aset",
+                        "Debit"
+                    ],
+                    [
+                        "1210",
+                        "Tanah",
+                        "Aset",
+                        "Debit"
+                    ],
+                    [
+                        "1220",
+                        "Bangunan",
+                        "Aset",
+                        "Debit"
+                    ],
+                    [
+                        "1230",
+                        "Kendaraan",
+                        "Aset",
+                        "Debit"
+                    ],
+                    [
+                        "1240",
+                        "Mesin",
+                        "Aset",
+                        "Debit"
+                    ],
+                    [
+                        "1250",
+                        "Peralatan",
+                        "Aset",
+                        "Debit"
+                    ],
+                    [
+                        "1290",
+                        "Akumulasi Penyusutan",
+                        "Aset",
+                        "Kredit"
+                    ],
+                    [
+                        "2100",
+                        "Utang Usaha",
+                        "Liabilitas",
+                        "Kredit"
+                    ],
+                    [
+                        "5100",
+                        "Beban Penyusutan",
+                        "Beban",
+                        "Debit"
+                    ]
+                ]
+            },
+            {
+                "type": "callout",
+                "text": "Pastikan akun Aset Tetap, Akumulasi Penyusutan, dan Beban Penyusutan sudah tersedia sebelum membuat kategori aset dan mencatat aset."
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "slug": "kategori-aset",
+        "title": "Mengelola Kategori Aset",
+        "description": "Mengelompokkan aset berdasarkan jenis dan menghubungkannya dengan akun.",
+        "category": "Referensi",
+        "updated_at": "Terbaru",
+        "icon": "folder",
+        "content": [
+            {
+                "type": "heading",
+                "text": "Fungsi Kategori Aset"
+            },
+            {
+                "type": "paragraph",
+                "text": "Kategori aset digunakan untuk mengelompokkan aset yang sejenis, misalnya Tanah, Bangunan, Kendaraan, Mesin, Peralatan, serta Komputer dan Elektronik. Setiap kategori dihubungkan dengan akun yang akan digunakan saat pencatatan transaksi."
+            },
+            {
+                "type": "heading",
+                "text": "Menambahkan Kategori Aset"
+            },
+            {
+                "type": "list",
+                "items": [
+                    "Buka menu Kategori Aset di sidebar.",
+                    "Klik tombol Tambah Kategori.",
+                    "Isi Kode Kategori (contoh: INV untuk Inventaris).",
+                    "Isi Nama Kategori, contoh Peralatan Kantor.",
+                    "Pilih Akun Aset Tetap untuk kategori tersebut (contoh: 1250 Peralatan).",
+                    "Pilih Akun Beban Penyusutan (contoh: 5100 Beban Penyusutan).",
+                    "Pilih Akun Akumulasi Penyusutan (contoh: 1290 Akumulasi Penyusutan).",
+                    "Lengkapi Umur Manfaat Default dan Nilai Residu Default jika diperlukan.",
+                    "Klik Simpan."
+                ]
+            },
+            {
+                "type": "heading",
+                "text": "Contoh Pengelompokan"
+            },
+            {
+                "type": "table",
+                "headers": [
+                    "Kategori",
+                    "Akun Aset",
+                    "Akun Beban Penyusutan",
+                    "Akumulasi Penyusutan"
+                ],
+                "rows": [
+                    [
+                        "Tanah",
+                        "1210 Tanah",
+                        "-",
+                        "-"
+                    ],
+                    [
+                        "Bangunan",
+                        "1220 Bangunan",
+                        "5100 Beban Penyusutan",
+                        "1290 Akumulasi Penyusutan"
+                    ],
+                    [
+                        "Kendaraan",
+                        "1230 Kendaraan",
+                        "5100 Beban Penyusutan",
+                        "1290 Akumulasi Penyusutan"
+                    ],
+                    [
+                        "Mesin",
+                        "1240 Mesin",
+                        "5100 Beban Penyusutan",
+                        "1290 Akumulasi Penyusutan"
+                    ],
+                    [
+                        "Peralatan",
+                        "1250 Peralatan",
+                        "5100 Beban Penyusutan",
+                        "1290 Akumulasi Penyusutan"
+                    ],
+                    [
+                        "Komputer & Elektronik",
+                        "1260 Komputer",
+                        "5100 Beban Penyusutan",
+                        "1290 Akumulasi Penyusutan"
+                    ]
+                ]
+            },
+            {
+                "type": "callout",
+                "text": "Tanah tidak disusutkan karena masa manfaatnya tidak terbatas, sehingga akun penyusutan untuk kategori Tanah dapat dikosongkan."
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "slug": "metode-penyusutan",
+        "title": "Mengelola Metode Penyusutan",
+        "description": "Memilih metode penghitungan penyusutan yang digunakan perusahaan.",
+        "category": "Referensi",
+        "updated_at": "Terbaru",
+        "icon": "calculator",
+        "content": [
+            {
+                "type": "heading",
+                "text": "Definisi"
+            },
+            {
+                "type": "paragraph",
+                "text": "Metode penyusutan menentukan besarnya beban penyusutan per periode untuk setiap aset. Pilihan metode yang tersedia pada aplikasi ini:"
+            },
+            {
+                "type": "list",
+                "items": [
+                    "Garis Lurus (Straight Line / SL): beban penyusutan sama setiap periode.",
+                    "Saldo Menurun Ganda (Double Declining Balance / DDB): beban penyusutan lebih besar di awal masa manfaat.",
+                    "Jumlah Angka Tahun (Sum of the Year Digits / SOYD): beban penyusutan menurun setiap tahun.",
+                    "Unit Produksi (Units of Production / UP): beban penyusutan berdasarkan pemakaian atau kapasitas produksi."
+                ]
+            },
+            {
+                "type": "heading",
+                "text": "Menambahkan Metode Penyusutan"
+            },
+            {
+                "type": "list",
+                "items": [
+                    "Buka menu Metode Penyusutan di sidebar.",
+                    "Klik tombol Tambah Metode.",
+                    "Isi Kode Metode, misalnya SL, DDB, SOYD, atau UP.",
+                    "Isi Nama Metode.",
+                    "Tuliskan Formula perhitungan sebagai referensi.",
+                    "Tambahkan deskripsi jika diperlukan, lalu klik Simpan."
+                ]
+            },
+            {
+                "type": "heading",
+                "text": "Contoh Penghitungan"
+            },
+            {
+                "type": "table",
+                "headers": [
+                    "Metode",
+                    "Formula",
+                    "Contoh"
+                ],
+                "rows": [
+                    [
+                        "Garis Lurus",
+                        "(Biaya Perolehan - Nilai Residu) / Umur Manfaat",
+                        "Rp 100 juta, residu 10 juta, 5 tahun = Rp 18 juta/tahun"
+                    ],
+                    [
+                        "Saldo Menurun Ganda",
+                        "2 x Tarif Garis Lurus x Nilai Buku Awal",
+                        "Tarif 40% dari nilai buku, beban menurun tiap tahun"
+                    ],
+                    [
+                        "Jumlah Angka Tahun",
+                        "Sisa Umur / Jumlah Angka Tahun x Dasar Penyusutan",
+                        "5/15 x Rp 90 juta = Rp 30 juta (tahun 1)"
+                    ],
+                    [
+                        "Unit Produksi",
+                        "Dasar Penyusutan x (Unit Diproduksi / Total Kapasitas)",
+                        "Rp 80 juta x (12.000 / 100.000) = Rp 9,6 juta"
+                    ]
+                ]
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "slug": "perolehan-aset",
+        "title": "Mencatat Perolehan Aset",
+        "description": "Langkah mencatat aset baru beserta harga perolehan dan jurnalnya.",
+        "category": "Prosedur",
+        "updated_at": "Terbaru",
+        "icon": "package-plus",
+        "content": [
+            {
+                "type": "heading",
+                "text": "Pengertian Harga Perolehan"
+            },
+            {
+                "type": "paragraph",
+                "text": "Harga perolehan adalah seluruh biaya yang dikeluarkan hingga aset siap digunakan, termasuk harga beli, biaya pengiriman, biaya instalasi, dan biaya lain yang dapat diatribusikan langsung. Harga perolehan dicatat sebagai nilai aset tetap, bukan sebagai beban."
+            },
+            {
+                "type": "heading",
+                "text": "Mencatat Aset Baru"
+            },
+            {
+                "type": "list",
+                "items": [
+                    "Buka menu Aset di sidebar.",
+                    "Klik tombol Tambah Aset.",
+                    "Nomor Aset akan dibuat otomatis, atau diisi manual dengan format yang konsisten.",
+                    "Isi Nama Aset dan pilih Kategori Aset.",
+                    "Lengkapi data pendukung: nomor seri, lokasi, penanggung jawab, dan pemasok.",
+                    "Isi Tanggal Perolehan, Biaya Perolehan, Nilai Residu, dan Umur Manfaat.",
+                    "Pilih Metode Penyusutan yang digunakan.",
+                    "Atur status aset (Aktif / Non-Aktif) dan catatan tambahan jika ada.",
+                    "Klik Simpan."
+                ]
+            },
+            {
+                "type": "heading",
+                "text": "Referensi Jurnal Perolehan"
+            },
+            {
+                "type": "table",
+                "headers": [
+                    "Akun",
+                    "Debit",
+                    "Kredit"
+                ],
+                "rows": [
+                    [
+                        "Aset Tetap (mis. Peralatan)",
+                        "Harga perolehan",
+                        ""
+                    ],
+                    [
+                        "Kas / Utang Usaha",
+                        "",
+                        "Harga perolehan"
+                    ]
+                ]
+            },
+            {
+                "type": "callout",
+                "text": "Jika perolehan dilakukan secara kredit, akun Kas diganti dengan Utang Usaha pada sisi kredit."
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "slug": "penyusutan",
+        "title": "Pencatatan Penyusutan",
+        "description": "Prosedur menghitung dan mencatat beban penyusutan secara berkala.",
+        "category": "Prosedur",
+        "updated_at": "Terbaru",
+        "icon": "trending-down",
+        "content": [
+            {
+                "type": "heading",
+                "text": "Prinsip Dasar"
+            },
+            {
+                "type": "paragraph",
+                "text": "Penyusutan membebankan sebagian harga perolehan aset ke periode pemakaiannya. Besaran penyusutan dihitung berdasarkan biaya perolehan, nilai residu, umur manfaat, dan metode penyusutan yang dipilih."
+            },
+            {
+                "type": "heading",
+                "text": "Langkah Pencatatan"
+            },
+            {
+                "type": "list",
+                "items": [
+                    "Buka menu transaksi Penyusutan.",
+                    "Pilih aset atau seluruh aset aktif yang akan disusutkan.",
+                    "Sistem menghitung beban penyusutan berdasarkan metode dan data aset.",
+                    "Periksa hasil perhitungan sebelum diposting.",
+                    "Posting jurnal penyusutan ke dalam buku besar.",
+                    "Akumulasi penyusutan aset akan bertambah dan nilai buku aset menurun."
+                ]
+            },
+            {
+                "type": "heading",
+                "text": "Referensi Jurnal Penyusutan"
+            },
+            {
+                "type": "table",
+                "headers": [
+                    "Akun",
+                    "Debit",
+                    "Kredit"
+                ],
+                "rows": [
+                    [
+                        "Beban Penyusutan",
+                        "Nilai penyusutan",
+                        ""
+                    ],
+                    [
+                        "Akumulasi Penyusutan",
+                        "",
+                        "Nilai penyusutan"
+                    ]
+                ]
+            },
+            {
+                "type": "callout",
+                "text": "Aset dengan nilai buku nol atau sudah habis masa manfaat tidak perlu disusutkan kembali."
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "slug": "pelepasan-aset",
+        "title": "Pelepasan Aset",
+        "description": "Mencatat penjualan, penghapusan, atau pertukaran aset yang tidak digunakan.",
+        "category": "Prosedur",
+        "updated_at": "Terbaru",
+        "icon": "package-minus",
+        "content": [
+            {
+                "type": "heading",
+                "text": "Kapan Aset Dilepas?"
+            },
+            {
+                "type": "paragraph",
+                "text": "Aset dilepas ketika dijual, dihapus karena rusak total, atau ditukar dengan aset lain. Pada saat pelepasan, saldo aset dan akumulasi penyusutannya dihapus, lalu selisih terhadap nilai buku dicatat sebagai laba atau rugi pelepasan."
+            },
+            {
+                "type": "heading",
+                "text": "Langkah Pencatatan"
+            },
+            {
+                "type": "list",
+                "items": [
+                    "Buka menu transaksi Pelepasan Aset.",
+                    "Pilih aset yang akan dilepas.",
+                    "Isi tanggal pelepasan dan hasil penjualan (jika dijual).",
+                    "Pilih jenis pelepasan: Penjualan atau Penghapusan.",
+                    "Sistem menghitung nilai buku dan laba/rugi pelepasan.",
+                    "Posting jurnal pelepasan aset."
+                ]
+            },
+            {
+                "type": "heading",
+                "text": "Referensi Jurnal Penjualan Aset (Laba)"
+            },
+            {
+                "type": "table",
+                "headers": [
+                    "Akun",
+                    "Debit",
+                    "Kredit"
+                ],
+                "rows": [
+                    [
+                        "Akumulasi Penyusutan",
+                        "Nilai akumulasi",
+                        ""
+                    ],
+                    [
+                        "Kas",
+                        "Harga jual",
+                        ""
+                    ],
+                    [
+                        "Aset Tetap",
+                        "",
+                        "Harga perolehan"
+                    ],
+                    [
+                        "Laba Pelepasan Aset",
+                        "",
+                        "Selisih harga jual - nilai buku"
+                    ]
+                ]
+            },
+            {
+                "type": "callout",
+                "text": "Jika harga jual lebih rendah dari nilai buku, selisihnya dicatat sebagai Rugi Pelepasan Aset pada sisi debit."
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "slug": "dashboard-laporan",
+        "title": "Dashboard & Pelaporan",
+        "description": "Membaca ringkasan kondisi aset perusahaan dari halaman Dashboard.",
+        "category": "Pemakaian",
+        "updated_at": "Terbaru",
+        "icon": "layout-dashboard",
+        "content": [
+            {
+                "type": "heading",
+                "text": "Ringkasan Dashboard"
+            },
+            {
+                "type": "paragraph",
+                "text": "Halaman Dashboard menampilkan empat kartu indikator utama kondisi aset perusahaan:"
+            },
+            {
+                "type": "list",
+                "items": [
+                    "Total Aset: jumlah seluruh aset yang tercatat pada aplikasi.",
+                    "Nilai Perolehan: total biaya perolehan seluruh aset aktif.",
+                    "Akumulasi Penyusutan: total penyusutan yang telah dicatat dan diposting.",
+                    "Nilai Buku: nilai perolehan dikurangi akumulasi penyusutan."
+                ]
+            },
+            {
+                "type": "heading",
+                "text": "Cara Membaca Nilai Buku"
+            },
+            {
+                "type": "paragraph",
+                "text": "Nilai Buku = Total Nilai Perolehan - Total Akumulasi Penyusutan. Nilai buku menunjukkan nilai aset yang masih tersisa setelah memperhitungkan penyusutan, dan menjadi dasar perhitungan laba/rugi saat aset dilepas."
+            },
+            {
+                "type": "callout",
+                "text": "Gunakan ringkasan dashboard untuk memantau kesehatan aset secara berkala dan mempersiapkan keputusan peremajaan atau pelepasan aset."
+            }
+        ]
+    }
+]

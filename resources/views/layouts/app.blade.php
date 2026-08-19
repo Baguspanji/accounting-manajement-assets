@@ -11,7 +11,7 @@
         .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     </style>
 </head>
-<body class="bg-surface text-slate-800 antialiased">
+<body class="bg-background text-text-primary antialiased">
     <div class="flex h-screen overflow-hidden">
         @include('layouts.sidebar')
         <div class="flex-1 flex flex-col overflow-hidden">

@@ -13,8 +13,8 @@
 @section('content')
     <div class="mb-6 flex justify-between items-center">
         <div>
-            <h2 class="text-xl font-bold text-slate-800">Detail Aset</h2>
-            <p class="text-slate-500 text-sm">Informasi lengkap kartu aset.</p>
+            <h2 class="text-xl font-bold text-text-primary">Detail Aset</h2>
+            <p class="text-text-secondary text-sm">Informasi lengkap kartu aset.</p>
         </div>
         <a href="{{ route('assets.index') }}" class="px-4 py-2 border border-slate-200 text-slate-600 rounded-xl hover:bg-slate-50 text-sm font-medium">
             Kembali
@@ -27,8 +27,8 @@
                 <div class="w-24 h-24 bg-primary-light rounded-2xl flex items-center justify-center mb-4">
                     <i data-lucide="package" class="w-12 h-12 text-primary"></i>
                 </div>
-                <h3 class="text-lg font-bold text-slate-800">{{ $asset->name }}</h3>
-                <p class="text-sm text-slate-500 mb-4">{{ $asset->asset_number }}</p>
+                <h3 class="text-lg font-bold text-text-primary">{{ $asset->name }}</h3>
+                <p class="text-sm text-text-secondary mb-4">{{ $asset->asset_number }}</p>
                 @php
                     $statusColor = [
                         'active' => 'bg-primary-light text-primary',
@@ -42,59 +42,59 @@
                 </span>
             </div>
             <div class="bg-white rounded-2xl shadow-soft border border-slate-100 p-5 mt-6">
-                <h3 class="font-bold text-slate-800 text-sm mb-3">Nilai</h3>
+                <h3 class="font-bold text-text-primary text-sm mb-3">Nilai</h3>
                 <dl class="space-y-2 text-sm">
-                    <div class="flex justify-between"><dt class="text-slate-500">Harga Perolehan</dt><dd class="font-medium">Rp {{ number_format($asset->acquisition_cost, 0, ',', '.') }}</dd></div>
-                    <div class="flex justify-between"><dt class="text-slate-500">Nilai Residu</dt><dd class="font-medium">Rp {{ number_format($asset->residual_value, 0, ',', '.') }}</dd></div>
-                    <div class="flex justify-between"><dt class="text-slate-500">Jumlah Disusutkan</dt><dd class="font-medium">Rp {{ number_format($asset->depreciableAmount(), 0, ',', '.') }}</dd></div>
-                    <div class="flex justify-between"><dt class="text-slate-500">Penyusutan / Tahun</dt><dd class="font-medium">Rp {{ number_format($asset->annualDepreciation(), 0, ',', '.') }}</dd></div>
+                    <div class="flex justify-between"><dt class="text-text-secondary">Harga Perolehan</dt><dd class="font-medium">Rp {{ number_format($asset->acquisition_cost, 0, ',', '.') }}</dd></div>
+                    <div class="flex justify-between"><dt class="text-text-secondary">Nilai Residu</dt><dd class="font-medium">Rp {{ number_format($asset->residual_value, 0, ',', '.') }}</dd></div>
+                    <div class="flex justify-between"><dt class="text-text-secondary">Jumlah Disusutkan</dt><dd class="font-medium">Rp {{ number_format($asset->depreciableAmount(), 0, ',', '.') }}</dd></div>
+                    <div class="flex justify-between"><dt class="text-text-secondary">Penyusutan / Tahun</dt><dd class="font-medium">Rp {{ number_format($asset->annualDepreciation(), 0, ',', '.') }}</dd></div>
                 </dl>
             </div>
         </div>
         <div class="col-span-1 md:col-span-2">
             <div class="bg-white rounded-2xl shadow-soft border border-slate-100 overflow-hidden">
                 <div class="p-5 border-b border-slate-100">
-                    <h3 class="font-bold text-slate-800">Informasi Aset</h3>
+                    <h3 class="font-bold text-text-primary">Informasi Aset</h3>
                 </div>
                 <div class="p-0">
                     <table class="w-full text-sm text-left">
                         <tbody class="divide-y divide-slate-100">
                             <tr class="hover:bg-slate-50">
-                                <th class="w-1/3 py-4 px-5 font-medium text-slate-500">Kategori</th>
-                                <td class="py-4 px-5 text-slate-800">{{ $asset->category?->name ?? '-' }}</td>
+                                <th class="w-1/3 py-4 px-5 font-medium text-text-secondary">Kategori</th>
+                                <td class="py-4 px-5 text-text-primary">{{ $asset->category?->name ?? '-' }}</td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-slate-500">Tanggal Perolehan</th>
-                                <td class="py-4 px-5 text-slate-800">{{ $asset->acquisition_date->format('d M Y') }}</td>
+                                <th class="py-4 px-5 font-medium text-text-secondary">Tanggal Perolehan</th>
+                                <td class="py-4 px-5 text-text-primary">{{ $asset->acquisition_date->format('d M Y') }}</td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-slate-500">Umur Manfaat</th>
-                                <td class="py-4 px-5 text-slate-800">{{ $asset->useful_life }} tahun</td>
+                                <th class="py-4 px-5 font-medium text-text-secondary">Umur Manfaat</th>
+                                <td class="py-4 px-5 text-text-primary">{{ $asset->useful_life }} tahun</td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-slate-500">Metode Penyusutan</th>
-                                <td class="py-4 px-5 text-slate-800">{{ $asset->depreciationMethod?->name ?? '-' }}</td>
+                                <th class="py-4 px-5 font-medium text-text-secondary">Metode Penyusutan</th>
+                                <td class="py-4 px-5 text-text-primary">{{ $asset->depreciationMethod?->name ?? '-' }}</td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-slate-500">Nomor Seri</th>
-                                <td class="py-4 px-5 text-slate-800">{{ $asset->serial_number ?? '-' }}</td>
+                                <th class="py-4 px-5 font-medium text-text-secondary">Nomor Seri</th>
+                                <td class="py-4 px-5 text-text-primary">{{ $asset->serial_number ?? '-' }}</td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-slate-500">Lokasi</th>
-                                <td class="py-4 px-5 text-slate-800">{{ $asset->location ?? '-' }}</td>
+                                <th class="py-4 px-5 font-medium text-text-secondary">Lokasi</th>
+                                <td class="py-4 px-5 text-text-primary">{{ $asset->location ?? '-' }}</td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-slate-500">Penanggung Jawab</th>
-                                <td class="py-4 px-5 text-slate-800">{{ $asset->responsible_person ?? '-' }}</td>
+                                <th class="py-4 px-5 font-medium text-text-secondary">Penanggung Jawab</th>
+                                <td class="py-4 px-5 text-text-primary">{{ $asset->responsible_person ?? '-' }}</td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-slate-500">Supplier</th>
-                                <td class="py-4 px-5 text-slate-800">{{ $asset->supplier ?? '-' }}</td>
+                                <th class="py-4 px-5 font-medium text-text-secondary">Supplier</th>
+                                <td class="py-4 px-5 text-text-primary">{{ $asset->supplier ?? '-' }}</td>
                             </tr>
                             @if ($asset->notes)
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-slate-500 align-top">Catatan</th>
-                                <td class="py-4 px-5 text-slate-800">{{ $asset->notes }}</td>
+                                <th class="py-4 px-5 font-medium text-text-secondary align-top">Catatan</th>
+                                <td class="py-4 px-5 text-text-primary">{{ $asset->notes }}</td>
                             </tr>
                             @endif
                         </tbody>

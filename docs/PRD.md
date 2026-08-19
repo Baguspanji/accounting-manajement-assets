@@ -1,49 +1,37 @@
-# PRD: Aplikasi Pembelajaran Akuntansi Manajemen Aset (Aset Tetap)
+# PRD: Aplikasi Akuntansi Manajemen Aset (Aset Tetap)
 
-**Versi:** 1.0
+**Versi:** 2.0
 
 ## 1. Ringkasan
-Aplikasi web yang digunakan sebagai media pembelajaran akuntansi aset tetap / manajemen aset (fixed asset management accounting).
-Fokus utama aplikasi adalah simulasi transaksi aset dan pencatatan akuntansi otomatis: perolehan, penyusutan, hingga pelepasan.
+Aplikasi web untuk pengelolaan dan pencatatan akuntansi aset tetap / manajemen aset (fixed asset management accounting).
+Fokus utama aplikasi adalah pencatatan transaksi aset dan akuntansi otomatis: perolehan, penyusutan, hingga pelepasan, dilengkapi dokumentasi pemakaian untuk pengguna.
 
 **Target pengguna:**
-- Guru
-- Mahasiswa
-- Siswa
-- Admin
+- Administrator
 
 ## 2. Tujuan Sistem
 Sistem harus mampu:
-- Melakukan simulasi transaksi manajemen aset (perolehan, penyusutan, pelepasan)
+- Mencatat transaksi manajemen aset (perolehan, penyusutan, pelepasan)
 - Menghasilkan jurnal otomatis setiap transaksi
 - Menghitung penyusutan dengan beberapa metode (garis lurus, saldo menurun, jumlah angka tahun, unit produksi)
 - Menghasilkan laporan keuangan terkait aset (kartu aset, daftar penyusutan, nilai buku, laba/rugi pelepasan)
-- Memberikan studi kasus pembelajaran
+- Menyediakan dokumentasi pemakaian aplikasi tanpa mekanisme latihan dan simulasi
 - Menampilkan perubahan nilai buku aset secara realtime
 
 ## 3. Role
 
-### Admin
-Mengelola seluruh sistem.
+### Administrator
+Satu-satunya peran pengguna dalam aplikasi. Mengelola seluruh sistem.
 Hak akses:
-- User
+- Dashboard
 - COA
 - Kategori Aset
 - Metode Penyusutan
-- Backup
-
-### Guru
-- Membuat kelas
-- Membuat studi kasus
-- Melihat nilai
-- Melihat transaksi siswa
-
-### Siswa
-- Login
-- Mengerjakan studi kasus
-- Input transaksi aset
-- Melihat jurnal
-- Melihat laporan
+- Data Aset
+- Transaksi (Perolehan, Penyusutan, Pelepasan)
+- Jurnal, Buku Besar, Neraca Saldo
+- Laporan
+- Dokumentasi Pemakaian
 
 ## 4. Modul
 
@@ -162,7 +150,7 @@ Generate otomatis.
 
 ## 5. Alur Sistem
 
-`Login` ➔ `Dashboard` ➔ `Pilih Studi Kasus` ➔ `Input Transaksi Aset` ➔ `Validasi` ➔ `Generate Jurnal` ➔ `Update Nilai Buku` ➔ `Generate Laporan` ➔ `Selesai`
+`Login` ➔ `Dashboard` ➔ `Input Transaksi Aset` ➔ `Validasi` ➔ `Generate Jurnal` ➔ `Update Nilai Buku` ➔ `Generate Laporan` ➔ `Selesai`
 
 ## 6. Business Rules
 
@@ -201,18 +189,30 @@ Beban = (HP − NR) × (produksi periode / kapasitas total)
 - Aset Tetap dikeluarkan (Kredit)
 - Nilai buku tersisa → Rugi Penghapusan (Debit)
 
-## 7. Studi Kasus
-Minimal terdapat:
-- **Case 1:** Perolehan Peralatan Kantor Tunai
-- **Case 2:** Perolehan Kendaraan Kredit
-- **Case 3:** Penyusutan Garis Lurus
-- **Case 4:** Penyusutan Saldo Menurun
-- **Case 5:** Penyusutan Jumlah Angka Tahun
-- **Case 6:** Penyusutan Unit Produksi
-- **Case 7:** Penjualan Aset (Laba)
-- **Case 8:** Penghapusan Aset (Rugi)
+## 7. Dokumentasi Pemakaian
+Aplikasi menyediakan dokumentasi pemakaian (tanpa latihan dan simulasi) yang mencakup:
+- **Mulai Cepat:** alur kerja utama aplikasi
+- **Chart of Account:** cara menyiapkan daftar akun
+- **Kategori Aset:** pengelompokan aset dan pemetaan akun
+- **Metode Penyusutan:** pilihan metode dan contoh perhitungan
+- **Perolehan Aset:** prosedur pencatatan aset baru
+- **Penyusutan:** prosedur pencatatan beban penyusutan
+- **Pelepasan Aset:** prosedur pencatatan penjualan/penghapusan
+- **Dashboard & Pelaporan:** cara membaca ringkasan dan laporan
 
-## 8. Struktur Menu
+## 8. Design System (Tailwind)
+
+| Elemen UI | Fungsi | Warna | Kode Hex |
+|---|---|---|---|
+| Primary | Header, Tombol Utama, Ikon Aktif | Biru Kelasi | `#2563EB` |
+| Background | Latar belakang aplikasi | Abu-abu Sangat Muda | `#F8FAFC` |
+| Surface | Latar kartu barang, Form input | Putih Bersih | `#FFFFFF` |
+| Text Primary | Judul, Nama Aset, Angka | Abu-abu Gelap | `#1E293B` |
+| Text Secondary | Deskripsi, Kategori, Tanggal | Abu-abu Medium | `#64748B` |
+
+Token Tailwind: `primary`, `primary-light`, `primary-dark`, `background`, `surface`, `text-primary`, `text-secondary`.
+
+## 9. Struktur Menu
 - **Dashboard**
 - **Master**
   - Kategori Aset
@@ -232,13 +232,11 @@ Minimal terdapat:
   - Jadwal Penyusutan
   - Nilai Buku
   - Laba/Rugi Pelepasan
-- **Pembelajaran**
-  - Materi
-  - Studi Kasus
-  - Latihan
+- **Dokumentasi**
+  - Panduan Pemakaian
 - **Pengaturan**
 
-## 9. Database (High Level)
+## 10. Database (High Level)
 Tabel utama:
 - `users`
 - `asset_categories`
@@ -250,13 +248,9 @@ Tabel utama:
 - `accounts`
 - `journals`
 - `journal_details`
-- `classes`
-- `students`
-- `study_cases`
-- `materials`
-- `quizzes`
+- `users`
 
-## 10. Routes & View
+## 11. Routes & View
 
 ### Master
 - `GET /assets` - Daftar aset
@@ -313,7 +307,7 @@ Tabel utama:
 - `GET /reports/profit-loss` - Laba rugi
 - `GET /reports/cashflow` - Arus kas
 
-## 11. Teknologi
+## 12. Teknologi
 **Backend & Frontend:**
 - Laravel 13
 - Laravel Blade (template engine)
@@ -332,7 +326,7 @@ Tabel utama:
 
 **Catatan:** Aplikasi tidak menggunakan TypeScript dan tidak memerlukan build tool frontend modern. Semua tampilan dirender server-side via Blade, dengan sedikit JavaScript native atau Alpine.js untuk elemen interaktif.
 
-## 12. Target MVP
+## 13. Target MVP
 **Sprint 1:**
 - Login
 - Dashboard
@@ -351,12 +345,11 @@ Tabel utama:
 **Sprint 4:**
 - Pelepasan Aset
 - Laporan
-- Studi Kasus
 
 ---
 
 ## Rekomendasi Arsitektur
-Menggunakan pendekatan **Domain-Driven Design (DDD)** ringan agar modul akuntansi aset tidak tercampur dengan modul pembelajaran.
+Menggunakan pendekatan **Domain-Driven Design (DDD)** ringan agar modul akuntansi aset terstruktur dan mudah dikembangkan.
 
 Struktur aplikasi Laravel yang disarankan:
 ```text

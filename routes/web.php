@@ -5,8 +5,7 @@ use App\Http\Controllers\AssetCategoryController;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepreciationMethodController;
-use App\Http\Controllers\MaterialController;
-use App\Http\Controllers\StudyCaseController;
+use App\Http\Controllers\DocumentationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -36,15 +35,13 @@ Route::post('/login', function (Request $request) {
     ]);
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('assets', AssetController::class);
     Route::resource('asset-categories', AssetCategoryController::class);
     Route::resource('depreciation-methods', DepreciationMethodController::class);
     Route::resource('accounts', AccountController::class);
 
-    Route::get('materials', [MaterialController::class, 'index'])->name('materials.index');
-    Route::get('materials/{id}', [MaterialController::class, 'show'])->name('materials.show');
-    Route::get('study-cases', [StudyCaseController::class, 'index'])->name('study-cases.index');
-    Route::get('study-cases/{id}', [StudyCaseController::class, 'show'])->name('study-cases.show');
+    Route::get('documentation', [DocumentationController::class, 'index'])->name('documentation.index');
+    Route::get('documentation/{id}', [DocumentationController::class, 'show'])->name('documentation.show');
 });

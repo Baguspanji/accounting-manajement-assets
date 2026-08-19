@@ -1,6 +1,6 @@
 @if ($paginator->hasPages())
     <div class="p-4 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-3">
-        <p class="text-sm text-slate-500">
+        <p class="text-sm text-text-secondary">
             Menampilkan {{ $paginator->firstItem() }} - {{ $paginator->lastItem() }} dari {{ $paginator->total() }} data
         </p>
         
@@ -11,7 +11,7 @@
                     <i data-lucide="chevron-left" class="w-4 h-4"></i>
                 </button>
             @else
-                <a href="{{ $paginator->previousPageUrl() }}" class="p-2 rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50 transition-colors">
+                <a href="{{ $paginator->previousPageUrl() }}" class="p-2 rounded-lg border border-slate-200 text-text-secondary hover:bg-slate-50 transition-colors">
                     <i data-lucide="chevron-left" class="w-4 h-4"></i>
                 </a>
             @endif
@@ -39,7 +39,7 @@
 
             {{-- Next Page Button --}}
             @if ($paginator->hasMorePages())
-                <a href="{{ $paginator->nextPageUrl() }}" class="p-2 rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50 transition-colors">
+                <a href="{{ $paginator->nextPageUrl() }}" class="p-2 rounded-lg border border-slate-200 text-text-secondary hover:bg-slate-50 transition-colors">
                     <i data-lucide="chevron-right" class="w-4 h-4"></i>
                 </a>
             @else

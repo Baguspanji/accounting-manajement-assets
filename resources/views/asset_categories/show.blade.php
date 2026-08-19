@@ -13,8 +13,8 @@
 @section('content')
     <div class="mb-6 flex justify-between items-center">
         <div>
-            <h2 class="text-xl font-bold text-slate-800">Detail Kategori Aset</h2>
-            <p class="text-slate-500 text-sm">Informasi lengkap kategori aset.</p>
+            <h2 class="text-xl font-bold text-text-primary">Detail Kategori Aset</h2>
+            <p class="text-text-secondary text-sm">Informasi lengkap kategori aset.</p>
         </div>
         <a href="{{ route('asset-categories.index') }}" class="px-4 py-2 border border-slate-200 text-slate-600 rounded-xl hover:bg-slate-50 text-sm font-medium">
             Kembali
@@ -27,8 +27,8 @@
                 <div class="w-24 h-24 bg-primary-light rounded-2xl flex items-center justify-center mb-4">
                     <i data-lucide="folder" class="w-12 h-12 text-primary"></i>
                 </div>
-                <h3 class="text-lg font-bold text-slate-800">{{ $assetCategory->name }}</h3>
-                <p class="text-sm text-slate-500 mb-4 font-mono">{{ $assetCategory->code }}</p>
+                <h3 class="text-lg font-bold text-text-primary">{{ $assetCategory->name }}</h3>
+                <p class="text-sm text-text-secondary mb-4 font-mono">{{ $assetCategory->code }}</p>
                 <span class="px-3 py-1 text-xs font-semibold rounded-full {{ $assetCategory->is_active ? 'bg-primary-light text-primary' : 'bg-slate-100 text-slate-600' }}">
                     {{ $assetCategory->is_active ? 'Aktif' : 'Non-Aktif' }}
                 </span>
@@ -37,34 +37,34 @@
         <div class="col-span-1 md:col-span-2">
             <div class="bg-white rounded-2xl shadow-soft border border-slate-100 overflow-hidden">
                 <div class="p-5 border-b border-slate-100">
-                    <h3 class="font-bold text-slate-800">Konfigurasi Akun & Default</h3>
+                    <h3 class="font-bold text-text-primary">Konfigurasi Akun & Default</h3>
                 </div>
                 <div class="p-0">
                     <table class="w-full text-sm text-left">
                         <tbody class="divide-y divide-slate-100">
                             <tr class="hover:bg-slate-50">
-                                <th class="w-1/3 py-4 px-5 font-medium text-slate-500">Akun Aset</th>
-                                <td class="py-4 px-5 text-slate-800">{{ $assetCategory->assetAccount?->name ?? '-' }}</td>
+                                <th class="w-1/3 py-4 px-5 font-medium text-text-secondary">Akun Aset</th>
+                                <td class="py-4 px-5 text-text-primary">{{ $assetCategory->assetAccount?->name ?? '-' }}</td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-slate-500">Akun Beban Penyusutan</th>
-                                <td class="py-4 px-5 text-slate-800">{{ $assetCategory->depreciationExpenseAccount?->name ?? '-' }}</td>
+                                <th class="py-4 px-5 font-medium text-text-secondary">Akun Beban Penyusutan</th>
+                                <td class="py-4 px-5 text-text-primary">{{ $assetCategory->depreciationExpenseAccount?->name ?? '-' }}</td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-slate-500">Akun Akumulasi Penyusutan</th>
-                                <td class="py-4 px-5 text-slate-800">{{ $assetCategory->accumulatedDepreciationAccount?->name ?? '-' }}</td>
+                                <th class="py-4 px-5 font-medium text-text-secondary">Akun Akumulasi Penyusutan</th>
+                                <td class="py-4 px-5 text-text-primary">{{ $assetCategory->accumulatedDepreciationAccount?->name ?? '-' }}</td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-slate-500">Umur Manfaat Default</th>
-                                <td class="py-4 px-5 text-slate-800">{{ $assetCategory->default_useful_life ? $assetCategory->default_useful_life.' tahun' : '-' }}</td>
+                                <th class="py-4 px-5 font-medium text-text-secondary">Umur Manfaat Default</th>
+                                <td class="py-4 px-5 text-text-primary">{{ $assetCategory->default_useful_life ? $assetCategory->default_useful_life.' tahun' : '-' }}</td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-slate-500">Nilai Residu Default</th>
-                                <td class="py-4 px-5 text-slate-800">Rp {{ number_format($assetCategory->default_residual_value, 0, ',', '.') }}</td>
+                                <th class="py-4 px-5 font-medium text-text-secondary">Nilai Residu Default</th>
+                                <td class="py-4 px-5 text-text-primary">Rp {{ number_format($assetCategory->default_residual_value, 0, ',', '.') }}</td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <th class="py-4 px-5 font-medium text-slate-500">Jumlah Aset</th>
-                                <td class="py-4 px-5 text-slate-800">{{ $assetCategory->assets->count() }} aset</td>
+                                <th class="py-4 px-5 font-medium text-text-secondary">Jumlah Aset</th>
+                                <td class="py-4 px-5 text-text-primary">{{ $assetCategory->assets->count() }} aset</td>
                             </tr>
                         </tbody>
                     </table>

@@ -4,9 +4,9 @@
             <div class="w-8 h-8 bg-primary rounded-xl flex items-center justify-center text-white">
                 <i data-lucide="box" class="w-5 h-5"></i>
             </div>
-            <span class="font-bold text-slate-800 hidden md:block">Akuntansi Aset</span>
+            <span class="font-bold text-text-primary hidden md:block">Akuntansi Aset</span>
         </div>
-        <button onclick="toggleSidebar()" class="md:hidden text-slate-500"><i data-lucide="x"></i></button>
+        <button onclick="toggleSidebar()" class="md:hidden text-text-secondary"><i data-lucide="x"></i></button>
     </div>
 
     <nav class="flex-1 overflow-y-auto custom-scroll py-4 px-3 space-y-1">
@@ -62,10 +62,10 @@
             <span class="text-sm">Neraca Saldo</span>
         </a>
 
-        <p class="px-3 text-xs font-semibold text-slate-400 uppercase mt-4 mb-1">Pembelajaran</p>
-                <a href="{{ route('materials.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('materials.*', 'study-cases.*') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
-                    <i data-lucide="graduation-cap" class="w-5 h-5"></i>
-                    <span class="text-sm">Materi & Studi Kasus</span>
+        <p class="px-3 text-xs font-semibold text-slate-400 uppercase mt-4 mb-1">Dokumentasi</p>
+                <a href="{{ route('documentation.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('documentation.*') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
+                    <i data-lucide="book-open" class="w-5 h-5"></i>
+                    <span class="text-sm">Panduan Pemakaian</span>
                 </a>
     </nav>
 </aside>

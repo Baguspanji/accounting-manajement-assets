@@ -33,13 +33,24 @@ class AssetModuleSmokeTest extends TestCase
             'depreciation-methods.index',
             'depreciation-methods.create',
             'accounts.index',
-            'materials.index',
-            'study-cases.index',
+            'documentation.index',
         ];
 
         foreach ($routes as $route) {
             $this->actingAs($user)->get(route($route))->assertOk();
         }
+
+        $this->actingAs($user)->get(route('documentation.show', 1))->assertOk();
+        $this->actingAs($user)->get(route('documentation.show', 999))->assertNotFound();
+    }
+
+    public function test_non_admin_user_is_blocked(): void
+    {
+        $staff = User::factory()->create(['role' => 'staff']);
+
+        $this->actingAs($staff)->get(route('dashboard'))->assertForbidden();
+        $this->actingAs($staff)->get(route('assets.index'))->assertForbidden();
+        $this->actingAs($staff)->get(route('documentation.index'))->assertForbidden();
     }
 
     public function test_depreciation_method_crud(): void
