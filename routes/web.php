@@ -14,6 +14,7 @@ use App\Http\Controllers\GeneralLedgerController;
 use App\Http\Controllers\JournalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ReportExportController;
 use App\Http\Controllers\TrialBalanceController;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +55,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('reports/jadwal-penyusutan', [ReportController::class, 'jadwalPenyusutan'])->name('reports.jadwal-penyusutan');
     Route::get('reports/pelepasan', [ReportController::class, 'pelepasan'])->name('reports.pelepasan');
     Route::get('reports/arus-kas', [ReportController::class, 'arusKas'])->name('reports.arus-kas');
+
+    Route::get('reports/neraca/pdf', [ReportExportController::class, 'neraca'])->name('reports.neraca.pdf');
+    Route::get('reports/laba-rugi/pdf', [ReportExportController::class, 'labaRugi'])->name('reports.laba-rugi.pdf');
+    Route::get('reports/nilai-buku-kategori/pdf', [ReportExportController::class, 'kategori'])->name('reports.kategori.pdf');
+    Route::get('reports/kartu-aset/pdf', [ReportExportController::class, 'kartuAset'])->name('reports.kartu-aset.pdf');
+    Route::get('reports/jadwal-penyusutan/pdf', [ReportExportController::class, 'jadwalPenyusutan'])->name('reports.jadwal-penyusutan.pdf');
+    Route::get('reports/pelepasan/pdf', [ReportExportController::class, 'pelepasan'])->name('reports.pelepasan.pdf');
+    Route::get('reports/arus-kas/pdf', [ReportExportController::class, 'arusKas'])->name('reports.arus-kas.pdf');
 
     Route::get('documentation', [DocumentationController::class, 'index'])->name('documentation.index');
     Route::get('documentation/{id}', [DocumentationController::class, 'show'])->name('documentation.show');

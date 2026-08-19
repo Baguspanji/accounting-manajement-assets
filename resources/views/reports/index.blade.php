@@ -43,23 +43,33 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         @php
             $reports = [
-                ['title' => 'Neraca', 'desc' => 'Posisi keuangan per tanggal (aset, liabilitas, ekuitas).', 'icon' => 'bar-chart-3', 'route' => route('reports.neraca')],
-                ['title' => 'Laba Rugi', 'desc' => 'Pendapatan, beban, dan laba/rugi periode.', 'icon' => 'trending-up', 'route' => route('reports.laba-rugi')],
-                ['title' => 'Arus Kas', 'desc' => 'Arus kas masuk dan keluar per periode.', 'icon' => 'wallet', 'route' => route('reports.arus-kas')],
-                ['title' => 'Nilai Buku per Kategori', 'desc' => 'Harga perolehan, akumulasi, dan nilai buku per kategori.', 'icon' => 'folder', 'route' => route('reports.kategori')],
-                ['title' => 'Kartu Aset', 'desc' => 'Detail aset beserta jadwal penyusutannya.', 'icon' => 'file-text', 'route' => route('reports.kartu-aset')],
-                ['title' => 'Jadwal Penyusutan', 'desc' => 'Beban penyusutan seluruh aset per periode.', 'icon' => 'calendar', 'route' => route('reports.jadwal-penyusutan')],
-                ['title' => 'Pelepasan Aset', 'desc' => 'Penjualan, penghapusan, dan laba/rugi pelepasan.', 'icon' => 'package-minus', 'route' => route('reports.pelepasan')],
+                ['title' => 'Neraca', 'desc' => 'Posisi keuangan per tanggal (aset, liabilitas, ekuitas).', 'icon' => 'bar-chart-3', 'route' => route('reports.neraca'), 'pdf' => route('reports.neraca.pdf')],
+                ['title' => 'Laba Rugi', 'desc' => 'Pendapatan, beban, dan laba/rugi periode.', 'icon' => 'trending-up', 'route' => route('reports.laba-rugi'), 'pdf' => route('reports.laba-rugi.pdf')],
+                ['title' => 'Arus Kas', 'desc' => 'Arus kas masuk dan keluar per periode.', 'icon' => 'wallet', 'route' => route('reports.arus-kas'), 'pdf' => route('reports.arus-kas.pdf')],
+                ['title' => 'Nilai Buku per Kategori', 'desc' => 'Harga perolehan, akumulasi, dan nilai buku per kategori.', 'icon' => 'folder', 'route' => route('reports.kategori'), 'pdf' => route('reports.kategori.pdf')],
+                ['title' => 'Kartu Aset', 'desc' => 'Detail aset beserta jadwal penyusutannya.', 'icon' => 'file-text', 'route' => route('reports.kartu-aset'), 'pdf' => route('reports.kartu-aset.pdf')],
+                ['title' => 'Jadwal Penyusutan', 'desc' => 'Beban penyusutan seluruh aset per periode.', 'icon' => 'calendar', 'route' => route('reports.jadwal-penyusutan'), 'pdf' => route('reports.jadwal-penyusutan.pdf')],
+                ['title' => 'Pelepasan Aset', 'desc' => 'Penjualan, penghapusan, dan laba/rugi pelepasan.', 'icon' => 'package-minus', 'route' => route('reports.pelepasan'), 'pdf' => route('reports.pelepasan.pdf')],
             ];
         @endphp
         @foreach ($reports as $report)
-            <a href="{{ $report['route'] }}" class="bg-white rounded-2xl shadow-soft border border-slate-100 p-5 hover:border-primary/40 hover:shadow-md transition-all group">
-                <div class="w-11 h-11 bg-primary-light rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary group-hover:text-white transition-colors">
-                    <i data-lucide="{{ $report['icon'] }}" class="w-5 h-5 text-primary group-hover:text-white"></i>
+            <div class="bg-white rounded-2xl shadow-soft border border-slate-100 p-5 hover:border-primary/40 hover:shadow-md transition-all group">
+                <div class="w-11 h-11 bg-primary-light rounded-xl flex items-center justify-center mb-3">
+                    <i data-lucide="{{ $report['icon'] }}" class="w-5 h-5 text-primary"></i>
                 </div>
-                <h3 class="font-bold text-text-primary">{{ $report['title'] }}</h3>
-                <p class="text-sm text-text-secondary mt-1">{{ $report['desc'] }}</p>
-            </a>
+                <a href="{{ $report['route'] }}" class="hover:text-primary">
+                    <h3 class="font-bold text-text-primary">{{ $report['title'] }}</h3>
+                </a>
+                <p class="text-sm text-text-secondary mt-1 mb-4">{{ $report['desc'] }}</p>
+                <div class="flex items-center justify-between">
+                    <a href="{{ $report['route'] }}" class="text-sm font-semibold text-primary hover:text-primary-dark inline-flex items-center gap-1">
+                        Buka <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </a>
+                    <a href="{{ $report['pdf'] }}" target="_blank" class="text-sm font-medium text-text-secondary hover:text-primary inline-flex items-center gap-1">
+                        <i data-lucide="file-down" class="w-3.5 h-3.5"></i> PDF
+                    </a>
+                </div>
+            </div>
         @endforeach
     </div>
 

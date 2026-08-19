@@ -9,7 +9,9 @@
 @endsection
 
 @section('content')
-    <x-flash type="success">{{ Session::get('success') }}</x-flash>
+    @if (Session::get('success'))
+        <x-flash type="success">{{ Session::get('success') }}</x-flash>
+    @endif
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div class="bg-white rounded-2xl shadow-soft border border-slate-100 overflow-hidden">

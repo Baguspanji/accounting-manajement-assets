@@ -24,6 +24,10 @@
             <button type="submit" class="px-4 py-2.5 text-sm font-semibold text-white bg-primary rounded-xl hover:bg-primary-dark transition-colors shadow-sm flex items-center gap-2">
                 <i data-lucide="filter" class="w-4 h-4"></i> Tampilkan
             </button>
+            <a href="{{ route('reports.neraca.pdf', request()->query()) }}" target="_blank"
+                class="px-4 py-2.5 text-sm font-semibold text-primary bg-primary-light rounded-xl hover:bg-primary/15 transition-colors flex items-center gap-2">
+                <i data-lucide="file-down" class="w-4 h-4"></i> Export PDF
+            </a>
         </form>
     </div>
 

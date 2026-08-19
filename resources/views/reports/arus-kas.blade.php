@@ -11,9 +11,15 @@
 @endsection
 
 @section('content')
-    <div class="mb-6">
-        <h2 class="text-xl font-bold text-text-primary">Arus Kas</h2>
-        <p class="text-text-secondary text-sm">Arus kas masuk dan keluar dari akun Kas per periode.</p>
+    <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <div>
+            <h2 class="text-xl font-bold text-text-primary">Arus Kas</h2>
+            <p class="text-text-secondary text-sm">Arus kas masuk dan keluar dari akun Kas per periode.</p>
+        </div>
+        <a href="{{ route('reports.arus-kas.pdf') }}" target="_blank"
+            class="px-4 py-2.5 text-sm font-semibold text-primary bg-primary-light rounded-xl hover:bg-primary/15 transition-colors flex items-center gap-2">
+            <i data-lucide="file-down" class="w-4 h-4"></i> Export PDF
+        </a>
     </div>
 
     <x-table :items="$rows" empty="Belum ada mutasi kas.">

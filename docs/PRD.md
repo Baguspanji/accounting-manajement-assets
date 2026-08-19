@@ -321,10 +321,10 @@ Tabel utama:
 - Laravel Sanctum / Session
 
 **Export:**
-- Excel
-- PDF
+- PDF (via Spatie BrowserShot + Puppeteer/Chrome headless)
+- Excel (direncanakan)
 
-**Catatan:** Aplikasi tidak menggunakan TypeScript dan tidak memerlukan build tool frontend modern. Semua tampilan dirender server-side via Blade, dengan sedikit JavaScript native atau Alpine.js untuk elemen interaktif.
+**Catatan:** Aplikasi tidak menggunakan TypeScript dan tidak memerlukan build tool frontend modern. Semua tampilan dirender server-side via Blade, dengan sedikit JavaScript native atau Alpine.js untuk elemen interaktif. Export PDF membutuhkan Node.js, Puppeteer, dan Google Chrome terpasang di lingkungan server.
 
 ## 13. Target MVP
 **Sprint 1:**

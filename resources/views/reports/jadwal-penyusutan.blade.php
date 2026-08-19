@@ -11,9 +11,15 @@
 @endsection
 
 @section('content')
-    <div class="mb-6">
-        <h2 class="text-xl font-bold text-text-primary">Jadwal Penyusutan</h2>
-        <p class="text-text-secondary text-sm">Beban penyusutan seluruh aset per periode.</p>
+    <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <div>
+            <h2 class="text-xl font-bold text-text-primary">Jadwal Penyusutan</h2>
+            <p class="text-text-secondary text-sm">Beban penyusutan seluruh aset per periode.</p>
+        </div>
+        <a href="{{ route('reports.jadwal-penyusutan.pdf') }}" target="_blank"
+            class="px-4 py-2.5 text-sm font-semibold text-primary bg-primary-light rounded-xl hover:bg-primary/15 transition-colors flex items-center gap-2">
+            <i data-lucide="file-down" class="w-4 h-4"></i> Export PDF
+        </a>
     </div>
 
     <x-table :items="$depreciations" empty="Belum ada jadwal penyusutan.">
