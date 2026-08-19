@@ -2,6 +2,10 @@
 
 Aplikasi pembelajaran akuntansi untuk mengelola **aset tetap**, **penyusutan**, dan **pelaporan keuangan** (jurnal, buku besar, neraca saldo, hingga laporan neraca, laba rugi, dan arus kas). Dibangun dengan Laravel 13, Blade, Tailwind CSS, dan SQLite.
 
+## Tampilan
+
+![Dashboard](public/assets/dashboard-example.png)
+
 ## Fitur
 
 ### Master Data
