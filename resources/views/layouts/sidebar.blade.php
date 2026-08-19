@@ -35,15 +35,15 @@
         </a>
 
         <p class="px-3 text-xs font-semibold text-slate-400 uppercase mt-4 mb-1">Transaksi</p>
-        <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors">
+        <a href="{{ route('acquisitions.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('acquisitions.*') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
             <i data-lucide="package-plus" class="w-5 h-5"></i>
             <span class="text-sm">Perolehan Aset</span>
         </a>
-        <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors">
+        <a href="{{ route('depreciations.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('depreciations.*') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
             <i data-lucide="trending-down" class="w-5 h-5"></i>
             <span class="text-sm">Penyusutan</span>
         </a>
-        <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors">
+        <a href="{{ route('disposals.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('disposals.*') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
             <i data-lucide="package-minus" class="w-5 h-5"></i>
             <span class="text-sm">Pelepasan Aset</span>
         </a>

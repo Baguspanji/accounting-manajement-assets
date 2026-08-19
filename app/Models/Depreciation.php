@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Depreciation extends Model
 {
@@ -31,5 +32,10 @@ class Depreciation extends Model
     public function asset(): BelongsTo
     {
         return $this->belongsTo(Asset::class);
+    }
+
+    public function journals(): MorphMany
+    {
+        return $this->morphMany(Journal::class, 'journalable');
     }
 }

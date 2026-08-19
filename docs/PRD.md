@@ -328,23 +328,23 @@ Tabel utama:
 
 ## 13. Target MVP
 **Sprint 1:**
-- Login
-- Dashboard
-- Master Kategori Aset
-- Master Aset (Register)
-- COA
+- [x] Login
+- [x] Dashboard
+- [x] Master Kategori Aset
+- [x] Master Aset (Register)
+- [x] COA
 
 **Sprint 2:**
-- Perolehan Aset
-- Penyusutan (metode dasar)
+- [x] Perolehan Aset
+- [x] Penyusutan (metode dasar)
+- [ ] Jurnal (list jurnal global)
 
 **Sprint 3:**
-- Jurnal
-- Buku Besar
+- [ ] Buku Besar
 
 **Sprint 4:**
-- Pelepasan Aset
-- Laporan
+- [x] Pelepasan Aset
+- [ ] Laporan
 
 ---
 
