@@ -59,10 +59,10 @@
         </a>
 
         <p class="px-3 text-xs font-semibold text-slate-400 uppercase mt-4 mb-1">Pembelajaran</p>
-        <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors">
-            <i data-lucide="graduation-cap" class="w-5 h-5"></i>
-            <span class="text-sm">Materi & Studi Kasus</span>
-        </a>
+                <a href="{{ route('materials.index') }}" class="flex items-center space-x-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('materials.*', 'study-cases.*') ? 'bg-primary-light text-primary-dark font-medium' : 'text-slate-600 hover:bg-slate-100' }} transition-colors">
+                    <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                    <span class="text-sm">Materi & Studi Kasus</span>
+                </a>
     </nav>
 </aside>
 

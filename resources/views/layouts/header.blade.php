@@ -12,14 +12,14 @@
     </div>
 
     <div class="flex items-center space-x-4">
-        <div class="hidden md:flex items-center bg-slate-100 rounded-xl px-3 py-2 w-64">
+        <!-- <div class="hidden md:flex items-center bg-slate-100 rounded-xl px-3 py-2 w-64">
             <i data-lucide="search" class="w-4 h-4 text-slate-500 mr-2"></i>
             <input type="text" placeholder="Cari data anggota, akad..." class="bg-transparent text-sm outline-none w-full">
         </div>
         <button class="relative p-2 rounded-xl hover:bg-slate-100">
             <i data-lucide="bell" class="w-5 h-5 text-slate-600"></i>
             <span class="absolute top-1 right-1 w-2 h-2 bg-danger rounded-full"></span>
-        </button>
+        </button> -->
         <div class="flex items-center space-x-2 cursor-pointer hover:bg-slate-100 p-1 rounded-xl">
             <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name ?? 'Admin') }}&background=16a34a&color=fff" alt="User" class="w-8 h-8 rounded-lg">
             <div class="hidden md:block">

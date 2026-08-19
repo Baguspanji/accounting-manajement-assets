@@ -3,6 +3,8 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\StudyCaseController;
 use App\Http\Controllers\MemberController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,4 +40,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('members', MemberController::class);
     Route::resource('accounts', AccountController::class);
     Route::resource('contracts', ContractController::class);
+    
+    Route::get('materials', [MaterialController::class, 'index'])->name('materials.index');
+    Route::get('materials/{id}', [MaterialController::class, 'show'])->name('materials.show');
+    Route::get('study-cases', [StudyCaseController::class, 'index'])->name('study-cases.index');
+    Route::get('study-cases/{id}', [StudyCaseController::class, 'show'])->name('study-cases.show');
 });

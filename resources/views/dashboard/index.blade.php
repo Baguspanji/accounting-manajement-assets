@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="mb-6">
-        <h2 class="text-2xl font-bold text-slate-800">Selamat Datang, {{ auth()->user()->name ?? 'Admin' }} 👋</h2>
+        <h2 class="text-2xl font-bold text-slate-800">Selamat Datang, {{ auth()->user()->name ?? 'Admin' }}</h2>
         <p class="text-slate-500">Ringkasan aktivitas simpan pinjam syariah hari ini.</p>
     </div>
 
@@ -26,7 +26,7 @@
             <h3 class="text-slate-500 text-sm">Total Anggota</h3>
             <p class="text-2xl font-bold text-slate-800">{{ \App\Models\Member::count() }}</p>
         </div>
-        
+
         <div class="bg-white p-5 rounded-2xl shadow-soft border border-slate-100">
             <div class="flex justify-between items-start mb-4">
                 <div class="p-2 bg-info-light rounded-xl">
@@ -36,7 +36,7 @@
             <h3 class="text-slate-500 text-sm">Total Simpanan</h3>
             <p class="text-2xl font-bold text-slate-800">Rp 0</p>
         </div>
-        
+
         <div class="bg-white p-5 rounded-2xl shadow-soft border border-slate-100">
             <div class="flex justify-between items-start mb-4">
                 <div class="p-2 bg-warning-light rounded-xl">
@@ -46,7 +46,7 @@
             <h3 class="text-slate-500 text-sm">Total Pembiayaan</h3>
             <p class="text-2xl font-bold text-slate-800">Rp 0</p>
         </div>
-        
+
         <div class="bg-white p-5 rounded-2xl shadow-soft border border-slate-100">
             <div class="flex justify-between items-start mb-4">
                 <div class="p-2 bg-slate-100 rounded-xl">
