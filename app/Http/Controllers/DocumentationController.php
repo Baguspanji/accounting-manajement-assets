@@ -25,7 +25,7 @@ class DocumentationController extends Controller
 
     private function getDocumentsData()
     {
-        $path = public_path('assets/documents.json');
+        $path = public_path('assets-doc/documents.json');
 
         if (! is_file($path)) {
             abort(500, 'File dokumentasi tidak ditemukan.');

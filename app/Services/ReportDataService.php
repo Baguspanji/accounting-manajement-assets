@@ -122,7 +122,7 @@ class ReportDataService
             $periods = JournalDetail::query()
                 ->join('journals', 'journal_details.journal_id', '=', 'journals.id')
                 ->where('journal_details.account_id', $kas->id)
-                ->selectRaw("strftime('%Y-%m', journals.transaction_date) as period")
+                ->selectRaw("DATE_FORMAT(journals.transaction_date, '%Y-%m') as period")
                 ->selectRaw('COALESCE(SUM(journal_details.debit), 0) as inflow')
                 ->selectRaw('COALESCE(SUM(journal_details.credit), 0) as outflow')
                 ->groupBy('period')
